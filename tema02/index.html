@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Título de la página</title>
+  <title>Tema 02</title>
 
   <!-- CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Iconos de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-  <!-- Tu CSS, SIEMPRE después del de Bootstrap -->
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+   <!-- Tu CSS, SIEMPRE después del de Bootstrap y otros estilos -->
   <link href="css/estilos.css" rel="stylesheet">
 </head>
 <body>
@@ -38,31 +41,57 @@
 
   <!--Tabla-->
   <table class="table table-hover">
+    <caption>Navegadores y motores</caption>
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th></th>
+        <!--Error en fa fa-chrome. esta desactualizado. usar fa-brands-->
+        <th><i class="fa-brands fa-chrome" aria-hidden="true"></i> Chrome</th>
+        <th><i class="fa-brands fa-firefox" aria-hidden="true"></i> Firefox</th>
+        <th><i class="fa-brands fa-safari" aria-hidden="true"></i> Safari</th>
+        <th><i class="fa-brands fa-edge" aria-hidden="true"></i> Edge</th>
+        <th><i class="fa-brands fa-opera" aria-hidden="true"></i> Opera</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <th>Empresa que lo desarrolla</th>
+        <td>Google</td>
+        <td>Mozilla</td>
+        <td>Apple</td>
+        <td>Microsoft</td>
+        <td>Opera</td>
       </tr>
       <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
+        <th>Motor de renderizado</th>
+        <td>Blin</td>
+        <td>Gecko</td>
+        <td>WebKit</td>
+        <td>Blink</td>
+        <td>Blink</td>
       </tr>
       <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
+        <th>Motor de JavaScript</th>
+        <td>V8</td>
+        <td>SpiderMonkey</td>
+        <td>JavaScriptCore</td>
+        <td>V8</td>
+        <td>V8</td>
+
+      </tr>
+       <tr>
+        <th>Basado en Chromium </th>
+        <td><i class="fa-solid fa-check" aria-hidden="true"></i></td>
+        <td><i class="fa-solid fa-xmark"></i></td>
+        <td><i class="fa-solid fa-xmark"></i></td>
+        <td><i class="fa-solid fa-check" aria-hidden="true"></i> desde 2020</td>
+        <td><i class="fa-solid fa-check" aria-hidden="true"></i> desde 2013</td>
+
       </tr>
     </tbody>
   </table>
+
+  <p></p>
 
   <!-- JS de Bootstrap (navbar que se pliega, modales, dropdowns...). Al final del body -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
