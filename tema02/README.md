@@ -17,13 +17,13 @@ Este repositorio contiene la solución a la Tarea 2. Consta de dos páginas web:
 
 ### B. Página de interacción simulando móvil
 
-![Captura de interaccion.html en móvil](capturas/interaccion_movil.png)
+![alt text](capturas/movil.png)
 
 > Vista de la página `interaccion.html` utilizando las herramientas de desarrollador (F12) en modo dispositivo. Se comprueba que el diseño es _responsive_, los botones se apilan correctamente y no hay necesidad de scroll horizontal.
 
 ### C. Trazas en la consola
 
-![tema02/capturas/movil.png](capturas/interaccion.png)
+![tema02/capturas/interaccion.png](capturas/interaccion.png)
 
 > Consola del navegador tras haber pulsado los tres botones. Se aprecian claramente los mensajes de `console.log()` (información estándar) y el mensaje en rojo generado por `console.error()`.
 
