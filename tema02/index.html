@@ -175,19 +175,25 @@
               Ejemplo de incompatibilidad (caniuse.com)
             </div>
             <div class="card-body">
-              <h5 class="card-title">Propiedad CSS: subgrid</h5>
+              <h5 class="card-title">
+                Propiedad CSS: grid-template-rows: masonry
+              </h5>
               <p class="card-text">
-                [Redacta tu propio ejemplo] Un ejemplo claro de diferencia entre
-                motores es el uso de la propiedad CSS <code>subgrid</code>.
-                Durante mucho tiempo, Firefox (con su motor Gecko) soportaba
-                esta propiedad perfectamente, mientras que navegadores basados
-                en Chromium como Chrome y Edge tardaron mucho más en
-                implementarlo, generando que la misma estructura se desordenara
-                visualmente en Chrome y se viera bien en Firefox.
+                Un ejemplo claro de diferencia entre motores es el diseño
+                <code>masonry</code> (cuadrículas estilo "muro de ladrillos").
+                Firefox (motor Gecko) lidera esta implementación y la soporta de
+                forma nativa/experimental. Sin embargo, en Chrome y Edge
+                (motores Blink) esta característica aún no está soportada, lo
+                que provoca que el diseño en cuadrícula se rompa o deje grandes
+                huecos en blanco si no se usa JavaScript para arreglarlo.
               </p>
               <p class="text-muted small mb-0">
                 Consultado en:
-                <a href="https://caniuse.com" target="_blank">caniuse.com</a>
+                <a
+                  href="https://caniuse.com/mdn-css_properties_grid-template-rows_masonry"
+                  target="_blank"
+                  >caniuse.com</a
+                >
                 (Octubre de 2026)
               </p>
             </div>
@@ -220,7 +226,7 @@
     <footer class="bg-dark text-white text-center py-3 mt-4">
       <div class="container">
         <p class="mb-0">
-          &copy; 2026 - [Tu Nombre y Apellidos] - Desarrollo Web en Entorno
+          &copy; 2026 - Juan H. Huertas Chergui - Desarrollo Web en Entorno
           Cliente
         </p>
       </div>
