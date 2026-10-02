@@ -23,20 +23,20 @@ Este repositorio contiene la solución a la Tarea 2. Consta de dos páginas web:
 
 ### C. Trazas en la consola
 
-![Captura de la consola](capturas/consola_trazas.png)
+![tema02/capturas/movil.png](capturas/interaccion.png)
 
 > Consola del navegador tras haber pulsado los tres botones. Se aprecian claramente los mensajes de `console.log()` (información estándar) y el mensaje en rojo generado por `console.error()`.
 
 ### D. Alerta de navegadores (Chrome y Firefox)
 
-![Captura del User-Agent en Chrome](capturas/alert_chrome.png)
-![Captura del User-Agent en Firefox](capturas/alert_firefox.png)
+![alt text](<capturas/Captura de pantalla 2026-10-02 180317.png>)
+!tema02/capturas/mozilla.png
 
 > Alertas emergentes generadas por el botón "¿Qué navegador soy?", ejecutadas en dos navegadores diferentes (por ejemplo, Chrome y Firefox). Muestran la cadena exacta del `userAgent` de cada uno.
 
 ### E. Entorno de desarrollo
 
-![Captura de VS Code y Live Server](capturas/vscode_liveserver.png)
+![alt text](capturas/vscodeylive.png)
 
 > Mi entorno de trabajo en Visual Studio Code, con la estructura de carpetas `tema02` visible en el panel lateral y el puerto del Live Server activo en la barra inferior.
 
