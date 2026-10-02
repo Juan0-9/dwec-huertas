@@ -30,7 +30,8 @@ Este repositorio contiene la solución a la Tarea 2. Consta de dos páginas web:
 ### D. Alerta de navegadores (Chrome y Firefox)
 
 ![alt text](<capturas/Captura de pantalla 2026-10-02 180317.png>)
-!tema02/capturas/mozilla.png
+
+![alt text](capturas/mozilla.png)
 
 > Alertas emergentes generadas por el botón "¿Qué navegador soy?", ejecutadas en dos navegadores diferentes (por ejemplo, Chrome y Firefox). Muestran la cadena exacta del `userAgent` de cada uno.
 
