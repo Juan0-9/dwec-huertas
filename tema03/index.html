@@ -230,14 +230,44 @@ console.log("--- Ejercicio 2 · Conversiones explícitas ---");
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row"><code>20</code></th>
-                  <td><code>number</code></td>
-                  <td><code>number</code></td>
+                  <th scope="row"><code>const a = String(123);</code></th>
+                  <td><code>"123"</code></td>
+                  <td><code>123 string</code></td>
                 </tr>
                 <tr>
-                  <th scope="row"><code>[valor]</code></th>
-                  <td><code>[lo que esperas]</code></td>
-                  <td><code>[lo que sale]</code></td>
+                  <th scope="row"><code> const b = Number("123");</code></th>
+                  <td><code>123</code></td>
+                  <td><code>123 number</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code> const c = Number("12abc"); </code></th>
+                  <td><code>NaN</code></td>
+                  <td><code>NaN number</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>const d = Number("");</code></th>
+                  <td><code>0</code></td>
+                  <td><code>0 number</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>const e = Number(true);</code></th>
+                  <td><code>1</code></td>
+                  <td><code>1 number</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>const f = Boolean(0);</code></th>
+                  <td><code>false</code></td>
+                  <td><code>false boolean</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>const g = Boolean("texto");</code></th>
+                  <td><code>true</code></td>
+                  <td><code> true boolean</code></td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>const h = Boolean("");</code></th>
+                  <td><code>false</code></td>
+                  <td><code> false boolean</code></td>
                 </tr>
               </tbody>
             </table>
@@ -253,8 +283,8 @@ console.log("--- Ejercicio 2 · Conversiones explícitas ---");
         <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
               Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" onclick="ejercicio1()">
-            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 1
+          <button type="button" class="btn btn-primary" onclick="ejercicio2()">
+            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 2
           </button>
           <span class="small text-body-secondary ms-2"
             >El resultado sale en la consola (F12).</span

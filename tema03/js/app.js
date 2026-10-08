@@ -46,18 +46,25 @@ function ejercicio2() {
   // DONE: muestra en la consola el resultado y el typeof de cada una.
   const a = String(123); // espero "123"
   console.log("String(123) →", a, typeof a);
+
   const b = Number("123"); // espero 123
   console.log("Number(123) →", b, typeof b);
+
   const c = Number("12abc"); // espero NaN
   console.log("Number(12abc) →", c, typeof c);
+
   const d = Number(""); // espero 0
   console.log('Number("") →', d, typeof d);
+
   const e = Number(true); // espero 1
   console.log(" Number(true) →", e, typeof e);
+
   const f = Boolean(0); // espero false
   console.log("Boolean(0) →", f, typeof f);
+
   const g = Boolean("texto"); // espero true
   console.log('Boolean("texto") →', g, typeof g);
+  
   const h = Boolean(""); // espero false
   console.log('Boolean("") →', h, typeof h);
 }
@@ -70,11 +77,11 @@ function ejercicio3() {
   console.log('"5" - 2 →', "5" - 2); // espero 3
 
   // DONE: cinco expresiones más que mezclen tipos (al menos dos inventadas por ti), cada una con su «espero …».
-  console.log('"5" - 2 →', "5" + 2); // espero 52
-  console.log('"5" - 2 →', "5" / 2); // espero 2.5
-  console.log('"5" - 2 →', "5" * 2); // espero 10
-  console.log('"5" - 2 →', 7 + "3"); // espero 10
-  console.log('"5" - 2 →', 8 % "3"); // espero 2
+  console.log('"5" + 2 →', "5" + 2); // espero 52
+  console.log('"5" / 2 →', "5" / 2); // espero 2.5
+  console.log('"5" * 2 →', "5" * 2); // espero 10
+  console.log('7 + "3" →', 7 + "3"); // espero 10
+  console.log('8 % "3" →', 8 % "3"); // espero 2
 
   // Ejemplo: la misma pareja comparada con == y con ===
   console.log('5 == "5" →', 5 == "5"); // espero true
