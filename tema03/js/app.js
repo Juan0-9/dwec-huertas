@@ -22,15 +22,16 @@ function ejercicio1() {
   // DONE: declara una variable de cada tipo que falta: string, boolean, null, undefined y bigint (como 10n).
   //       const si no va a cambiar; let para al menos una a la que des valor más tarde.
   const nombre = "Juan"; // string
-  const esMayorDeEdad = true;
-  let email = null;
-  const coso = undefined;
-  const numeroGrande = 10n;
+  const esMayorDeEdad = true; //boolean
+  let email = null; // null
+  const coso = undefined; //undefined
+  const numeroGrande = 10n; //bigInt
   // DONE: muestra en la consola el valor y el typeof de cada una, como en el ejemplo.
   console.log("nombre =", nombre, "→", typeof nombre);
   console.log("esMayorDeEdad =", esMayorDeEdad, "→", typeof esMayorDeEdad);
   console.log("email =", email, "→", typeof email);
   console.log("indefinido =", coso, "→", typeof coso);
+  console.log("numeroGrande =", numeroGrande, "→", typeof numeroGrande);
   // DONE: da valor a tu variable let y vuelve a mostrar su typeof.
   email = "juan@gmail.com";
   console.log("email =", email, "→", typeof email);
@@ -66,7 +67,7 @@ function ejercicio3() {
   console.log("--- Ejercicio 3 · Coerción y comparaciones ---");
 
   // Ejemplo: una expresión que mezcla tipos
-  console.log('"5" - 2 →', "5" - 2); // espero [tu predicción]
+  console.log('"5" - 2 →', "5" - 2); // espero 3
 
   // DONE: cinco expresiones más que mezclen tipos (al menos dos inventadas por ti), cada una con su «espero …».
   console.log('"5" - 2 →', "5" + 2); // espero 52
