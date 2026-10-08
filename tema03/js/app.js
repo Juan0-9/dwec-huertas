@@ -101,13 +101,24 @@ function ejercicio4() {
   let horasEstudio = 21;
   horasEstudio += 3;
   // La ficha con plantilla de cadena: backticks (`) y ${ }
-  const ficha = `Soy ${nombre}. Estoy en ${curso} de el grado superior de ${ciclo}. Mi afición es ${aficion}.<br>
-                He estudiado ${horasEstudio} horas esta semana `;
+  const ficha = `Soy ${nombre}. Estoy en ${curso} de el grado superior de ${ciclo}. Mi afición es ${aficion}.
+                He estudiado ${horasEstudio} horas esta semana. `;
   // TODO: completa la ficha con todos tus datos y muéstrala con alert() y en la consola.
   alert(ficha);
   // TODO: escribe la misma ficha concatenando con + en una constante fichaConMas y muéstrala en la consola.
-  const fichaConMas = "Soy " +nombre+". Estoy en "+curso+" de el grado superior de "+ciclo+""+aficion++horasEstudio+;
+  const fichaConMas =
+    "Soy " +
+    nombre +
+    ". Estoy en " +
+    curso +
+    " de el grado superior de " +
+    ciclo +
+    ". Mi afición es " +
+    aficion +
+    ". He estudiado " +
+    horasEstudio +
+    " horas esta semana. ";
   // TODO: compara las dos con === y muestra el resultado en la consola: tiene que salir true.
-
+  console.log("Ficha con ` === ficha con mas: " + (ficha === fichaConMas));
   // Recuerda: el error de dar otro valor a una const se provoca en la consola del navegador, no aquí.
 }
