@@ -115,6 +115,7 @@ function ejercicio4() {
                 He estudiado ${horasEstudio} horas esta semana. `;
   // DONE: completa la ficha con todos tus datos y muéstrala con alert() y en la consola.
   alert(ficha);
+  console.log(ficha);
   // DONE: escribe la misma ficha concatenando con + en una constante fichaConMas y muéstrala en la consola.
   const fichaConMas =
     "Soy " +
@@ -128,6 +129,7 @@ function ejercicio4() {
     ". He estudiado " +
     horasEstudio +
     " horas esta semana. ";
+  console.log(fichaConMas);
   // DONE : compara las dos con === y muestra el resultado en la consola: tiene que salir true.
   console.log("Ficha con ` === ficha con mas: " + (ficha === fichaConMas));
   // Recuerda: el error de dar otro valor a una const se provoca en la consola del navegador, no aquí.
