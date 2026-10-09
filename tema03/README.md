@@ -2,8 +2,6 @@
 
 **Autor:** Juan Hakram Huertas Chergui · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
-
-
 En esta carpeta trabajo con variables, tipos de datos y conversiones. Para probar: abrir la carpeta en VS Code, pulsar **Go Live**, abrir la consola con F12 y pulsar «Ejecutar» en cada ejercicio..
 
 ## Capturas
@@ -37,19 +35,20 @@ Las comparaciones con `==` y `===` y coerciones. Con el simbolo +, Con `+` hay q
 ![Consola del ejercicio 4 con el error de la const](capturas/e-consola-ej4.png)
 
 En el resultado de consola se ve que las dos maneras de concatenar dan el mismo resultado, auque es mucho mas intuitivo utilizar backticks. El error de `const` es porque un constante no se puede reasignar.
+
 ## Reflexión
 
-### ¿Qué conversiones me resultaron más intuitivas y cuáles me sorprendieron? 
+### ¿Qué conversiones me resultaron más intuitivas y cuáles me sorprendieron?
+
 La conversiones de Boolean() me resularon las mas intuitivas, porque un valor vacio o cero da `false` y un `string` con contenido o un numero que no sea 0 da `true`. Con `Number()` tambien acerte en mis predicciones. La conversiòn de un valor alfanumérico con `Number()` da NaN(Not a number) y una cadena vacia da 0.
 
 ## Fuentes
 
 - [web.dev -nulo e indefinido](https://web.dev/learn/javascript/data-types/null-undefined?hl=es-419)
 
-
 ## Uso de IA
 
- **Herramienta:** Claude.ia
- **Fecha:** 09/10/2026
- **Pregunta:** Corrige los fallos de ortografía y la redacción de Readme.md y captura de pantalla.
- **Uso:** Con el listado de errores, maunalmente corregir cada error.
+**Herramienta:** Claude.ia
+**Fecha:** 09/10/2026
+**Pregunta:** Corrige los fallos de ortografía y la redacción de Readme.md y captura de pantalla.
+**Uso:** Con el listado de errores, manualmente corregir cada error.
