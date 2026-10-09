@@ -74,18 +74,20 @@
   const edad = 20; // number
   console.log("edad =", edad, "→", typeof edad);
 
+  // DONE: declara una variable de cada tipo que falta: string, boolean, null, undefined y bigint (como 10n).
+  //       const si no va a cambiar; let para al menos una a la que des valor más tarde.
   const nombre = "Juan"; // string
   const esMayorDeEdad = true; //boolean
   let email = null; // null
   const coso = undefined; //undefined
   const numeroGrande = 10n; //bigInt
-
-
+  // DONE: muestra en la consola el valor y el typeof de cada una, como en el ejemplo.
   console.log("nombre =", nombre, "→", typeof nombre);
   console.log("esMayorDeEdad =", esMayorDeEdad, "→", typeof esMayorDeEdad);
   console.log("email =", email, "→", typeof email);
   console.log("indefinido =", coso, "→", typeof coso);
-
+  console.log("numeroGrande =", numeroGrande, "→", typeof numeroGrande);
+  // DONE: da valor a tu variable let y vuelve a mostrar su typeof.
   email = "juan@gmail.com";
   console.log("email =", email, "→", typeof email);
 }</code></pre>
@@ -126,7 +128,7 @@
                   <th scope="row">email</th>
                   <td><code>null</code></td>
                   <td><code>null</code></td>
-                  <td><code><span class="badge text-bg-danger">Fallé</span></code></td>
+                  <td><code>object <span class="badge text-bg-danger">Fallé</span></code></td>
                 </tr>
                 <tr>
                   <th scope="row">coso</th>
@@ -138,12 +140,12 @@
                   <th scope="row">numeroGrande</th>
                   <td><code>10n</code></td>
                   <td><code>bigInt</code></td>
-                  <td><code>bigInt</code></td>
+                  <td><code>bigint</code></td>
                 </tr>
                 <tr>
                   <th scope="row">email</th>
                   <td><code>"juan@gmail.com"</code></td>
-                  <td><code>String<code></td>
+                  <td><code>String</code></td>
                   <td><code>String</code></td>
                 </tr>
               </tbody>
@@ -152,7 +154,9 @@
 
           <!-- 4) Tu explicación -->
           <p class="small mb-0">
-            <strong>El caso de null: Es un bug no corregido de Javascript para no romper versiones mas antiguas. <br>
+            <strong>El caso de null: <br>
+                <code>typeof null</code> devuelve <code>object</code>, aunque null no es un objeto.
+                  Es un bug no corregido de Javascript para no romper versiones mas antiguas. <br>
                El valor <code>null</code> se almacenaba como un puntero nulo y esa representación coincide con la usada para objetos.</strong> 
           </p>
         </div>
@@ -282,7 +286,7 @@
             </table>
           </div>
 
-
+        </div>
 
         <div class="card-footer">
           <button type="button" class="btn btn-primary" onclick="ejercicio2()">
@@ -480,9 +484,16 @@
   console.log("Ficha con ` === ficha con mas: " + (ficha === fichaConMas));
 }</code></pre>
 
+    <div class="alert alert-danger">
+  <pre><code>Uncaught TypeError: Assignment to constant variable.
+    at <anonymous>:1:7</code></pre><br>
+  El error salta para evitar errores y que se sobreescriba informacion importante. 
+</div>
 
+        </div>
         <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
               Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
+        
         <div class="card-footer">
           <button type="button" class="btn btn-primary" onclick="ejercicio4()">
             <i class="bi bi-play-fill"></i> Ejecutar ejercicio 4
