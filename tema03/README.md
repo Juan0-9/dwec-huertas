@@ -40,7 +40,7 @@ En el resultado de consola se ve que las dos maneras de concatenar dan el mismo 
 
 ### ¿Qué conversiones me resultaron más intuitivas y cuáles me sorprendieron?
 
-La conversiones de Boolean() me resularon las mas intuitivas, porque un valor vacio o cero da `false` y un `string` con contenido o un numero que no sea 0 da `true`. Con `Number()` tambien acerte en mis predicciones. La conversiòn de un valor alfanumérico con `Number()` da NaN(Not a number) y una cadena vacia da 0.
+La conversiones de Boolean() me resularon las mas intuitivas, porque un valor vacio o cero da `false` y un `string` con contenido o un numero que no sea 0 da `true`. Con `Number()` tambien acerte en mis predicciones. La conversiòn de un valor alfanumérico con `Number()` da NaN(Not a number) y una cadena vacia da 0. o que más me sorprendió fue `typeof null`, que devuelve `object` aunque `null` no es un objeto. 
 
 ## Fuentes
 
