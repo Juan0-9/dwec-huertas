@@ -179,23 +179,34 @@ function parOImpar() {
 function bucleFor() {
   const veces = leerNumero("numero1");
   limpiarSalida();
+  let contador = 0;
 
   // TODO: si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, muestra un error en rojo.
   // TODO: si no, repite con un for tantas veces como diga «veces». En cada vuelta:
   //         anadirLinea(`for · repetición ${i} de ${veces}`);
   //       y cuenta las vueltas en una variable contador.
   // TODO: al terminar, añade una línea con el total: «Total: 5 repeticiones» o «Total: 1 repetición».
-  if (Number.isNaN(n1)) {
+  if (Number.isNaN(veces)) {
     mostrar("Escribe un número antes de operar.", "danger");
-    console.warn("Bucle For: falta un número");
+    console.error("Bucle For: falta un número");
   } else {
-    if (!Number.isInteger(n1)) {
-      mostrar(`${n1} no es ni par ni impar`, "warn");
-      console.warn(`Bucle For: ${n1} numero tiene decimales`);
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle For: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
     } else {
-      for (let i = 0; i < array.length; i++) {
-        ;
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(`Bucle For: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES }, el numero maximo de repeticiones.`, "danger");
+        console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+      } else {
+        for (let i = 0; i <= veces; i++) {
+          anadirLinea(`for · repetición ${i} de ${veces}`);
+          console.log(`for · repetición ${i} de ${veces}`);
+          contador++;
+        }
+        anadirLinea(`Total: ${contador} repeticiones.`);
+        console.log(`Total: ${contador} repeticiones.`);
       }
+      
     }
   }
 }
@@ -204,12 +215,62 @@ function bucleWhile() {
   const veces = leerNumero("numero1");
   limpiarSalida();
   // TODO: lo mismo que bucleFor(), con un while.
+  if (Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.error("Bucle For: falta un número");
+  } else {
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle For: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+    } else {
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(
+          `Bucle For: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          "danger",
+        );
+        console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+      } else {
+        while (contador <= veces) {
+          anadirLinea(`for · repetición ${i} de ${veces}`);
+          console.log(`for · repetición ${i} de ${veces}`);
+          contador++;
+        }
+        anadirLinea(`Total: ${contador} repeticiones.`);
+        console.log(`Total: ${contador} repeticiones.`);
+      }
+    }
+  }
 }
 
 function bucleDoWhile() {
   const veces = leerNumero("numero1");
   limpiarSalida();
   // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
+    if (Number.isNaN(veces)) {
+      mostrar("Escribe un número antes de operar.", "danger");
+      console.error("Bucle For: falta un número");
+    } else {
+      if (!Number.isInteger(veces)) {
+        mostrar(`Bucle For: Numenro 1 : '${n1}' tiene decimales`, "danger");
+        console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+      } else {
+        if (veces > MAXIMO_REPETICIONES) {
+          mostrar(
+            `Bucle For: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+            "danger",
+          );
+          console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+        } else {
+          do {
+            anadirLinea(`for · repetición ${i} de ${veces}`);
+            console.log(`for · repetición ${i} de ${veces}`);
+            contador++;
+          } while (contador <= veces);
+          anadirLinea(`Total: ${contador} repeticiones.`);
+          console.log(`Total: ${contador} repeticiones.`);
+        }
+      }
+    }
 }
 
 
