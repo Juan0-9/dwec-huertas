@@ -74,10 +74,10 @@ function dividir() {
       if (n2 === 0) {
         if (n1===5) {
           mostrar("Infinity: no se puede dividir por 0", "danger");
-          console.warn("Dividir: Division 0/5= Infinity NaN.");
+          console.error("Dividir: Division 0/5= Infinity NaN.");
         } else {
           mostrar("No se puede dividir por 0.", "danger");
-          console.warn("Dividir: Division por 0.");
+          console.error("Dividir: Division por 0.");
         }
       } else {
         const resultado = n1 / n2;
@@ -112,10 +112,10 @@ function modulo() {
      if (n2 === 0) {
        if (n1 === 5) {
          mostrar("No se puede dividir por 0", "danger");
-         console.warn("Modulo: 0%5= NaN.");
+         console.error("Modulo: 0%5= NaN.");
        } else {
          mostrar("No se puede dividir por 0.", "danger");
-         console.warn("Modulo: Division por 0.");
+         console.error("Modulo: Division por 0.");
        }
      } else {
        const resultado = n1 % n2;
@@ -203,8 +203,12 @@ function bucleFor() {
           console.log(`for · repetición ${i} de ${veces}`);
           contador++;
         }
-        anadirLinea(`Total: ${contador} repeticiones.`);
-        console.log(`Total: ${contador} repeticiones.`);
+        anadirLinea((veces===1) ?`Total: ${contador} repetición.`: `Total: ${contador} repeticiones.` );
+        console.log(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`
+        );
       }
       
     }
@@ -214,7 +218,92 @@ function bucleFor() {
 function bucleWhile() {
   const veces = leerNumero("numero1");
   limpiarSalida();
+  let contador = 0;
   // TODO: lo mismo que bucleFor(), con un while.
+  if (Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.error("Bucle While: falta un número");
+  } else {
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle while: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle while: Numenro 1 : '${n1}' tiene decimales`);
+    } else {
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(
+          `Bucle while: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          "danger",
+        );
+        console.error(`Bucle while: Numero 1 : '${n1}' tiene decimales`);
+      } else {
+        while (contador <= veces) {
+          anadirLinea(`while · repetición ${i} de ${veces}`);
+          console.log(`while · repetición ${i} de ${veces}`);
+          contador++;
+        }
+        anadirLinea(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`
+        );
+        console.log((veces===1) ?`Total: ${contador} repetición.`: `Total: ${contador} repeticiones.` );
+      }
+    }
+  }
+}
+
+function bucleDoWhile() {
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+  let contador = 0;
+  // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
+  if (Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.error("Bucle DoWhile: falta un número");
+  } else {
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`);
+    } else {
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(
+          `Bucle DoWhile: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          "danger",
+        );
+        console.error(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`);
+      } else {
+        do {
+          anadirLinea(`DoWhile · repetición ${i} de ${veces}`);
+          console.log(`DoWhile · repetición ${i} de ${veces}`);
+          contador++;
+        } while (contador <= veces);
+        anadirLinea(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`
+        );
+        console.log(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`
+        );
+      }
+    }
+  }
+}
+
+
+// ============================================================
+// Ejercicio 4 · Bucles con badges
+// ============================================================
+
+function badgesFor() {
+  // TODO: como bucleFor(), pero cada vuelta añade un badge con el número de la repetición:
+  //         anadirBadge(i, "primary");
+  // TODO: los pares, de un color y los impares, de otro. Elige el color con el operador ternario.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+  let contador = 0;
+  
   if (Number.isNaN(veces)) {
     mostrar("Escribe un número antes de operar.", "danger");
     console.error("Bucle For: falta un número");
@@ -230,64 +319,113 @@ function bucleWhile() {
         );
         console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
       } else {
-        while (contador <= veces) {
-          anadirLinea(`for · repetición ${i} de ${veces}`);
-          console.log(`for · repetición ${i} de ${veces}`);
+        for (let i = 0; i <= veces; i++) {
+          i % 2 === 0 ? anadirBadge(i, "primary") : anadirBadge(i, "success");
+          console.log(
+            i % 2 === 0
+              ? `Azul: while · repetición ${i} de ${veces} `
+              : `Verde: while · repetición ${i} de ${veces}`
+          );
           contador++;
         }
-        anadirLinea(`Total: ${contador} repeticiones.`);
-        console.log(`Total: ${contador} repeticiones.`);
+        anadirLinea(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
+        console.log(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
       }
     }
   }
 }
 
-function bucleDoWhile() {
+function badgesWhile() {
   const veces = leerNumero("numero1");
   limpiarSalida();
-  // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
-    if (Number.isNaN(veces)) {
-      mostrar("Escribe un número antes de operar.", "danger");
-      console.error("Bucle For: falta un número");
+  let contador = 0;
+  
+  // TODO: lo mismo que badgesFor(), con un while.
+  
+  if (Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.error("Bucle While: falta un número");
+  } else {
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle while: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle while: Numenro 1 : '${n1}' tiene decimales`);
     } else {
-      if (!Number.isInteger(veces)) {
-        mostrar(`Bucle For: Numenro 1 : '${n1}' tiene decimales`, "danger");
-        console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(
+          `Bucle while: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          "danger",
+        );
+        console.error(`Bucle while: Numero 1 : '${n1}' tiene decimales`);
       } else {
-        if (veces > MAXIMO_REPETICIONES) {
-          mostrar(
-            `Bucle For: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
-            "danger",
+        while (contador <= veces) {
+          contador % 2 === 0
+            ? anadirBadge(contador, "primary")
+            : anadirBadge(contador, "success");
+          console.log(
+            contador % 2 === 0
+              ? `Azul: while · repetición ${i} de ${veces} `
+              : `Verde: while · repetición ${i} de ${veces}`,
           );
-          console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
-        } else {
-          do {
-            anadirLinea(`for · repetición ${i} de ${veces}`);
-            console.log(`for · repetición ${i} de ${veces}`);
-            contador++;
-          } while (contador <= veces);
-          anadirLinea(`Total: ${contador} repeticiones.`);
-          console.log(`Total: ${contador} repeticiones.`);
         }
+        anadirLinea(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
+        console.log(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
       }
     }
-}
-
-
-// ============================================================
-// Ejercicio 4 · Bucles con badges
-// ============================================================
-
-function badgesFor() {
-  // TODO: como bucleFor(), pero cada vuelta añade un badge con el número de la repetición:
-  //         anadirBadge(i, "primary");
-  // TODO: los pares, de un color y los impares, de otro. Elige el color con el operador ternario.
-}
-
-function badgesWhile() {
-  // TODO: lo mismo que badgesFor(), con un while.
+  }
 }
 
 function badgesDoWhile() {
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+  let contador = 0;
   // TODO: lo mismo que badgesFor(), con un do…while.
+  if (Number.isNaN(veces)) {
+    mostrar("Escribe un número antes de operar.", "danger");
+    console.error("Bucle DoWhile: falta un número");
+  } else {
+    if (!Number.isInteger(veces)) {
+      mostrar(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`, "danger");
+      console.error(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`);
+    } else {
+      if (veces > MAXIMO_REPETICIONES) {
+        mostrar(
+          `Bucle DoWhile: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          "danger",
+        );
+        console.error(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`);
+      } else {
+        do {
+          anadirLinea(`DoWhile · repetición ${i} de ${veces}`);
+          console.log(`DoWhile · repetición ${i} de ${veces}`);
+          contador++;
+        } while (contador <= veces);
+        anadirLinea(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
+        console.log(
+          veces === 1
+            ? `Total: ${contador} repetición.`
+            : `Total: ${contador} repeticiones.`,
+        );
+      }
+    }
+  }
 }
