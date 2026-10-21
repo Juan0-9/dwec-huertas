@@ -1,5 +1,5 @@
 /*
-  Tarea 4 · DWEC · [Tu nombre y apellidos]
+  Tarea 4 · DWEC · Juan Hakram Huertas Chergui
   Calculadora y bucles.
 
   Cómo usar esta plantilla:
@@ -45,7 +45,7 @@ function restar() {
     } else {
       const resultado = n1 - n2;
       mostrar(`${n1} - ${n2} = ${resultado}`);
-      console.log(`Sumar: ${n1} - ${n2} = ${resultado}`);
+      console.log(`Restar: ${n1} - ${n2} = ${resultado}`);
     }
 }
 
@@ -72,13 +72,10 @@ function dividir() {
       console.warn("Dividir: falta algún número");
     } else {
       if (n2 === 0) {
-        if (n1===5) {
-          mostrar("Infinity: no se puede dividir por 0", "danger");
-          console.error("Dividir: Division 0/5= Infinity NaN.");
-        } else {
-          mostrar("No se puede dividir por 0.", "danger");
-          console.error("Dividir: Division por 0.");
-        }
+        
+        mostrar("No se puede dividir por 0.", "danger");
+        console.error("Dividir: Division por 0.");
+        
       } else {
         const resultado = n1 / n2;
         mostrar(`${n1} / ${n2} = ${resultado}`);
@@ -110,13 +107,8 @@ function modulo() {
       console.warn("Modulo: falta algún número");
     } else {
      if (n2 === 0) {
-       if (n1 === 5) {
-         mostrar("No se puede dividir por 0", "danger");
-         console.error("Modulo: 0%5= NaN.");
-       } else {
-         mostrar("No se puede dividir por 0.", "danger");
-         console.error("Modulo: Division por 0.");
-       }
+      mostrar("No se puede dividir por 0.", "danger");
+      console.error("Modulo: Division por 0.");
      } else {
        const resultado = n1 % n2;
        mostrar(`${n1} % ${n2} = ${resultado}`);
@@ -142,7 +134,7 @@ function cualEsMayor() {
     mostrar(`${n1} es igual a ${n2}`);
     console.log(`cualEsMayor: ${n1} === ${n2}`);
    } else if (n1 > n2) {
-    mostrar(`${n1} es mayor que ${n2} = `);
+    mostrar(`${n1} es mayor que ${n2} `);
     console.log(`cualEsMayor: ${n1} > ${n2}`);
    } else {
     mostrar(`${n1} es menor que ${n2}`);
@@ -160,7 +152,7 @@ function parOImpar() {
     console.warn("parOImpar: falta un número");
   } else {
     if (!Number.isInteger(n1)) { 
-      mostrar(`${n1} no es ni par ni impar`, "warn");
+      mostrar(`${n1} no es ni par ni impar`, "warning");
       console.warn(`parOImpar: ${n1} no es ni par ni impar`);
     } else {
       const resultado = n1 % 2 === 0 ? "par" : "impar";
@@ -181,31 +173,26 @@ function bucleFor() {
   limpiarSalida();
   let contador = 0;
 
-  // TODO: si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, muestra un error en rojo.
-  // TODO: si no, repite con un for tantas veces como diga «veces». En cada vuelta:
-  //         anadirLinea(`for · repetición ${i} de ${veces}`);
-  //       y cuenta las vueltas en una variable contador.
-  // TODO: al terminar, añade una línea con el total: «Total: 5 repeticiones» o «Total: 1 repetición».
   if (Number.isNaN(veces)) {
     mostrar("Escribe un número antes de operar.", "danger");
     console.error("Bucle For: falta un número");
   } else {
     if (!Number.isInteger(veces)) {
-      mostrar(`Bucle For: Numenro 1 : '${n1}' tiene decimales`, "danger");
-      console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+      mostrar(`Bucle For: Numenro 1 : '${veces}' tiene decimales`, "danger");
+      console.error(`Bucle For: Numenro 1 : '${veces}' tiene decimales`);
     } else {
       if (veces > MAXIMO_REPETICIONES) {
-        mostrar(`Bucle For: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES }, el numero maximo de repeticiones.`, "danger");
-        console.error(`Bucle For: Numenro 1 : '${n1}' tiene decimales`);
+        mostrar(`Bucle For: Numenro 1 : '${veces}' es mayor que ${MAXIMO_REPETICIONES }, el numero maximo de repeticiones.`, "danger");
+        console.error(`Bucle For: Numenro 1 : '${veces}' tiene decimales`);
       } else {
         for (let i = 0; i <= veces; i++) {
           anadirLinea(`for · repetición ${i} de ${veces}`);
           console.log(`for · repetición ${i} de ${veces}`);
           contador++;
         }
-        anadirLinea((veces===1) ?`Total: ${contador} repetición.`: `Total: ${contador} repeticiones.` );
+        anadirLinea((contador===1) ?`Total: ${contador} repetición.`: `Total: ${contador} repeticiones.` );
         console.log(
-          veces === 1
+          contador === 1
             ? `Total: ${contador} repetición.`
             : `Total: ${contador} repeticiones.`
         );
@@ -411,8 +398,8 @@ function badgesDoWhile() {
         console.error(`Bucle DoWhile: Numenro 1 : '${n1}' tiene decimales`);
       } else {
         do {
-          anadirLinea(`DoWhile · repetición ${i} de ${veces}`);
-          console.log(`DoWhile · repetición ${i} de ${veces}`);
+          anadirLinea(`DoWhile · repetición ${contadoror} de ${veces}`);
+          console.log(`DoWhile · repetición ${contador} de ${veces}`);
           contador++;
         } while (contador <= veces);
         anadirLinea(
