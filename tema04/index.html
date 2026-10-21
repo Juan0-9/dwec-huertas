@@ -94,8 +94,6 @@
         </div>
       </section>
 
-      <!-- TODO EJERCICIO 2 · Comparaciones: una card con los botones
-               «¿Cuál es mayor?» → cualEsMayor()     «¿Par o impar?» → parOImpar() -->
       <section class="card mb-4">
         <div class="card-header">Comparaciones</div>
         <div class="card-body">
@@ -108,30 +106,23 @@
           </button>
         </div>
       </section>
-      <!-- TODO EJERCICIOS 3 Y 4 · Bucles: una card con dos grupos de botones (btn-group)
-               Con texto:  for → bucleFor()    while → bucleWhile()    do…while → bucleDoWhile()
-               Con badges: for → badgesFor()   while → badgesWhile()   do…while → badgesDoWhile() -->
+      
          
         <section class="card mb-4">
         <div class="card-header">Bucles</div>
         <div class="card-body">
           <div class="btn-group" role="group" aria-label="Con badges">
-            <button type="button" class="btn btn-primary">Left</button>
-            <button type="button" class="btn btn-primary">Middle</button>
-            <button type="button" class="btn btn-primary">Right</button>
-            <button type="button" class="btn btn-primary">Left</button>
-            <button type="button" class="btn btn-primary">Middle</button>
-            <button type="button" class="btn btn-primary">Right</button>
+            <button type="button" class="btn btn-primary" onclick="bucleFor()">for</button>
+            <button type="button" class="btn btn-primary" onclick="bucleWhile()">while</button>
+            <button type="button" class="btn btn-primary" onclick="bucleDoWhile()">do...while</button>
           </div>
           <div class="btn-group" role="group" aria-label="Con texto">
-            <button type="button" class="btn btn-primary">Left</button>
-            <button type="button" class="btn btn-primary">Middle</button>
-            <button type="button" class="btn btn-primary">Right</button>
-            <button type="button" class="btn btn-primary">Left</button>
-            <button type="button" class="btn btn-primary">Middle</button>
-            <button type="button" class="btn btn-primary">Right</button>
+            <button type="button" class="btn btn-primary" onclick="badgesFor()">for</button>
+            <button type="button" class="btn btn-primary" onclick="badgesWhile()">while</button>
+            <button type="button" class="btn btn-primary" onclick="badgesDoWhile()">do..while</button>
           </div>
         </div>
+        </section>
     </main>
 
     <footer class="bg-body-tertiary border-top py-3">
