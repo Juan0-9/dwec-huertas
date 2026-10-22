@@ -11,7 +11,8 @@
 > 5. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
 > 6. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
 
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live**, escribir dos números y pulsar los botones con la consola abierta (F12).]
+[Una o dos abrir la carpeta en VS Code, pulsar **Go Live**, escribir dos números y pulsar los botones con la consola abierta (F12).]
+Página con una calculadora simple, comparaciones y diferentes tipos de bucles. Los bucles escriben el texto como texto o badges.
 
 ## Capturas
 
@@ -19,7 +20,7 @@
 
 <img src="capturas/a-pagina.png" alt="La página entera con mi nombre en la navbar" width="600">
 
-[Qué se ve: tu nombre en la navbar y cómo has repartido las cards con la rejilla.]
+Se ve la navbar con mi nombre y debajo la cabecera con el título. En modo escritorio, la rejilla reparte las cards en dos columas, izquierda para números y resultados y derecha para la calculadora, comparaciones y los bucles.
 
 ### b) La página en el móvil
 
