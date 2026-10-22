@@ -206,23 +206,23 @@ function bucleWhile() {
   const veces = leerNumero("numero1");
   limpiarSalida();
   let contador = 0;
-  // TODO: lo mismo que bucleFor(), con un while.
+
   if (Number.isNaN(veces)) {
     mostrar("Escribe un número antes de operar.", "danger");
     console.error("Bucle While: falta un número");
   } else {
     if (!Number.isInteger(veces)) {
-      mostrar(`Bucle while: Numenro 1 : '${n1}' tiene decimales`, "danger");
-      console.error(`Bucle while: Numenro 1 : '${n1}' tiene decimales`);
+      mostrar(`Bucle while: Numenro 1 : '${veces}' tiene decimales`, "danger");
+      console.error(`Bucle while: Numenro 1 : '${veces}' tiene decimales`);
     } else {
       if (veces > MAXIMO_REPETICIONES) {
         mostrar(
-          `Bucle while: Numenro 1 : '${n1}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
+          `Bucle while: Numenro 1 : '${veces}' es mayor que ${MAXIMO_REPETICIONES}, el numero maximo de repeticiones.`,
           "danger",
         );
-        console.error(`Bucle while: Numero 1 : '${n1}' tiene decimales`);
+        console.error(`Bucle while: Numero 1 : '${veces}' tiene decimales`);
       } else {
-        while (contador <= veces) {
+        while (contador < veces) {
           anadirLinea(`while · repetición ${i} de ${veces}`);
           console.log(`while · repetición ${i} de ${veces}`);
           contador++;
