@@ -11,7 +11,7 @@
 > 5. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
 > 6. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
 
-[Una o dos abrir la carpeta en VS Code, pulsar **Go Live**, escribir dos números y pulsar los botones con la consola abierta (F12).]
+
 Página con una calculadora simple, comparaciones y diferentes tipos de bucles. Los bucles escriben el texto como texto o badges.
 
 ## Capturas
@@ -48,7 +48,7 @@ Puse el número ´5´ y salen los badges de uno a cinco con color azul y verde i
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿en qué se diferencian for, while y do…while y cuándo usarías cada uno? Pon como ejemplo lo que pasó con el 0.]
+
 
 Los tres bucles sirven para repetir bloques de codigo, pero cada uno tiene un uso diferente.
 
@@ -56,7 +56,7 @@ El `for` se usa cuando ya se sabe el número de iteraciones de antemano. Es espa
 
 El `while` combrueba la condición antes de cada iteración, y lo usaría cuando no se cuantas veces se va a repetir el bucle. Es utíl para busquedas o para confirmar que un usuario escriba un dato válido.
 
-El `do..while` hace lo mismo que el `while`, solo que ejecuta una vez antes de revisar la condición. Al poner ´0´, se ejecuto una vez aunque no cumplia con los requisitos,. También aprendi a tener cuidado con los bucles infitos por no incluir el contador en algunos bucle y do no copiar y pegar ciegamente.
+El `do..while` hace lo mismo que el `while`, solo que ejecuta una vez antes de revisar la condición. Al poner ´ 0 ´, se ejecuto una vez aunque no cumplia con los requisitos,. También aprendi a tener cuidado con los bucles infitos por no incluir el contador en algunos bucle y do no copiar y pegar ciegamente.
 
 
 
@@ -69,13 +69,16 @@ El `do..while` hace lo mismo que el `while`, solo que ejecuta una vez antes de r
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has
 - Claude.ai (Anthropic)
+
 Uso: 
- - arreglo de variables no existentes `n1`y `veces`
- - bucles que daban un vuelta de mas. (Empezaba de 0 y en la condición tenia `contador <=veces`).
- - se me olvido `contador++`
- - uso de variable `total`
-- Tambien corregir faltas 
+
+    - arreglo de variables no existentes `n1`y `veces`
+    - bucles que daban un vuelta de mas. (Empezaba de 0 y en la condición tenia `contador <=veces`).
+    - se me olvido `contador++`
+    - uso de variable `total`
+    - Tambien corregir faltas 
+
 Que hice:
-- Ir corregiendo los errores, y cuando Claude me recomendaba otro codigo, intentaba arreglar el mi primero.
+
+    - Ir corregiendo los errores, y cuando Claude me recomendaba otro codigo, intentaba arreglar el mi primero.
