@@ -14,7 +14,6 @@
 
 console.log("app.js cargado");
 
-
 // ============================================================
 // Ejercicio 1 · Selectores y modificación
 // Un selector distinto para cada párrafo
@@ -30,12 +29,11 @@ function aplicarCambios() {
   segundo.classList.add("bg-warning-subtle");
   //// el tercero, con querySelectorAll("#contenido p") y su posición en la lista: ponlo en rojo con "text-danger".
   const p = document.querySelectorAll("#contenido p");
-  const tercero = p[2];//empezando de 0 es el tercer elemento.
+  const tercero = p[2]; //empezando de 0 es el tercer elemento.
   tercero.classList.add("text-danger");
   //// un console.log() que diga que se han aplicado los cambios.
   console.log("Se han aplicado los cambios");
 }
-
 
 // ============================================================
 // Ejercicio 2 · Crear y eliminar nodos
@@ -47,12 +45,12 @@ function anadirParrafo() {
   ////  dale el texto «Párrafo nuevo N», donde N es el número de párrafos que habrá en #contenido
   ////      (pista: document.querySelector("#contenido").children.length).
   //// cuélgalo al final de #contenido con append().
-  
+
   const contenido = document.querySelector("#contenido");
   const N = contenido.children.length + 1;
   parrafo.textContent = `Párrafo nuevo ${N}`;
   contenido.append(parrafo);
-  document.getElementById("aviso2").classList.add("d-none");//Quitar el aviso
+  document.getElementById("aviso2").classList.add("d-none"); //Quitar el aviso
 
   console.log(`Añadido: Párrafo nuevo ${n}`);
 }
@@ -69,9 +67,8 @@ function eliminarUltimo() {
   } else {
     ultimo.remove();
     console.log("Eliminado el último párrafo");
- }
+  }
 }
-
 
 // ============================================================
 // Ejercicio 3 · Resaltar al pasar el ratón
@@ -94,16 +91,14 @@ function activarResaltado() {
   }
 
   ////  un console.log() que diga en cuántos párrafos se ha activado (parrafos.length).
-  console.log(`Resaltado activado en ${parrafos.length} párrafos`)
+  console.log(`Resaltado activado en ${parrafos.length} párrafos`);
 }
-
 
 // ============================================================
 // Ejercicio 4 · Cambiar el primer párrafo
 // ============================================================
 
 function cambiarTexto() {
-
   ////  lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
   const text = document.getElementById("nuevoTexto").value.trim();
   //// si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
@@ -117,11 +112,9 @@ function cambiarTexto() {
       primerP.textContent = text;
       error.classList.add("d-none");
       console.log(`Primer párrafo cambiado: ${text}`);
+    } else {
+      console.log(`cambiarTexto(): No hay texto que cambiar.`);
     }
-    else {
-      console.log(`cambiarTexto(): No hay texto que cambiar.`)
-    }
-    
   }
   //// si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
 }
@@ -136,7 +129,7 @@ function cambiarConHtml() {
     console.log("cambiarTexto: Esta vacio");
   } else {
     if (primerP !== null) {
-      primerP.innerHTML= text;
+      primerP.innerHTML = text;
       error.classList.add("d-none");
       console.log(`Primer párrafo cambiado: ${text}`);
     } else {
@@ -146,27 +139,73 @@ function cambiarConHtml() {
   //       Prueba las dos con <b>hola</b> y explica en el README qué diferencia ves y por qué es peligroso.
 }
 
-
 // ============================================================
 // Ejercicio 5 · Lista de tareas
 // ============================================================
 
 function anadirTarea() {
   // TODO: lee el texto de #tareaInput (value + trim). Si está vacío, muestra un mensaje en #error5.
+  text = document.querySelector("#tareaInput").value.trim();
+  const error = document.getElementById("error5");
+  const listaTareas = document.getElementById("listaTareas");
+
+  if (text === "") {
+    error.classList.remove("d-none");
+    console.log("añadirTarea: no hay texto que añadir.");
+  } else {
+     const li = document.createElement("li");
+     li.classList.add("list-group-form");
+     const checkbox = document.createElement("input");
+     checkbox.setAttribute("type", "checkbox");
+     checkbox.setAttribute("value", "");
+     checkbox.classList.add("form-check-input");
+
+     const span = document.createElement("span");
+     span.textContent = text;
+
+     li.append(checkbox, span);
+     listaTareas.append(li);
+
+     error.classList.add("d-none");
+
+     const total = document.querySelectorAll("#listaTareas li").length;
+     document.getElementById("totalTareas").textContent = total;
+     console.log(`Tarea añadida: ${text} y un total de ${total} tareas.`);
+  }
   // TODO: si no, crea un <li class="list-group-item"> con dos elementos dentro:
   //         · un <input> de tipo "checkbox" con la clase "form-check-input",
   //         · un <span> con el texto de la tarea (textContent).
   //       Cuelga el <li> de #listaTareas y vacía la casilla (value = "").
   // TODO: actualiza #totalTareas con el número de <li> que hay en la lista.
+ 
 }
 
 function borrarCompletadas() {
+  const marcadas = document.querySelectorAll("#listaTareas input:checked");
+  const error = document.getElementById("error5");
   // TODO: selecciona las casillas marcadas: document.querySelectorAll("#listaTareas input:checked").
   // TODO: si no hay ninguna, avisa en #error5. Si hay, recórrelas con for…of y borra el <li> de cada una
   //       (el <li> es el padre de la casilla: parentElement).
-  // TODO: actualiza #totalTareas.
-}
+  if (marcadas.length === 0) {
+    error.classList.remove("d-none");
+    console.log("BorrarTareas: noy hay tareas o no estan marcadas.");
+  } else {
+    for (tarea of marcadas) {
+      tarea.parentElement.remove();
+    }
+    error.classList.add("d-none");
+  }
 
+  //// actualiza #totalTareas.
+  const total = document.querySelectorAll("#listaTareas li").length;
+  document.getElementById("totalTareas").textContent = total;
+  console.log(
+    marcadas.length === 1
+      ? `Tarea eliminada: ${marcadas.length} y queda un total de ${total}.`
+      : `Tareas eliminadas: ${marcadas.length} y queda un total de ${total}.`,
+  );
+
+}
 
 // ============================================================
 // Ejercicio 6 · Datos de la ventana (BOM)
