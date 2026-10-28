@@ -10,7 +10,7 @@
 > 4. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
 > 5. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
 
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live** y probar los botones con la consola abierta (F12).]
+ Abre la carpeta en VS Code, pulsa Go Live y prueba los botones con la consola abierta (F12): cada función deja un mensaje en ella.
 
 ## Capturas
 
@@ -18,46 +18,64 @@
 
 <img src="capturas/a-pagina.png" alt="La página recién cargada con mi nombre en la navbar" width="600">
 
-[Qué se ve: tu nombre y los tres párrafos de partida.]
+Se ve mi nombre en la barra de navegación y los tres párrafos de partida. 
 
 ### b) Ejercicios 1 y 2
 
 <img src="capturas/b-ej1-ej2.png" alt="Los párrafos después de aplicar los cambios y añadir dos párrafos" width="600">
 
-[Qué ha cambiado en cada párrafo y qué selector has usado para cada uno.]
+Tras pulsar el boton:
+    - Primero: con getElementById, el texto del primer párrafo cambia a "Texto modificado por JavaScript".
+    - Segundo: con querySelector, se selecciona la clase y se resalta con color `bg-warning-subtle`.
+    -Tercero: con querySelectorAll("#contenido p") y su posicion en lista, se cambia el color rojo.
+Después he pulsado Párrafo Nuevo dos veces.
+
 
 ### c) Ejercicio 3: resaltado al pasar el ratón
 
 ![Un párrafo resaltado con el ratón encima](capturas/c-ej3-resaltado.png)
 
-[Qué párrafo está resaltado y qué pasa con los párrafos que añades después.]
+El párrafo resaltado es el que tiene el ratón dentro del contenedor. Se resalta cuando entra el raton dentro del contenedor y lo pierde cuando sale. Los párrofos añadidos no se resaltan al no tener el evento añadido.
 
 ### d) Ejercicio 4: `<b>hola</b>` con innerHTML
 
 <img src="capturas/d-ej4-innerhtml.png" alt="El primer párrafo tras usar innerHTML" width="600">
 
-[Qué salía con «Cambiar texto» y qué sale con innerHTML.]
+Cambiar texto:<b>hola</b> 
+innerHTML: **hola**
+
+Con innerHTML, el navegador interpreta las etiqueta y muestra hola en negrita.
 
 ### e) Ejercicio 5: la lista de tareas
 
 ![La lista con tres tareas y una marcada](capturas/e-ej5-lista.png)
 
-[Tres tareas, una marcada, antes de pulsar «Borrar completadas».]
+Se muestra tres tareas con casillas y una marcada, antes de pulsar borrar completadas. 
 
 ### f) Ejercicio 6: los datos de la ventana en el móvil
 
 <img src="capturas/f-ej6-movil.png" alt="Los datos de la ventana en el modo móvil" width="300">
 
-[Qué punto de corte sale en el móvil y cuál en tu ordenador.]
+####  Punto de corte:
+- móvil: `xs`
+- mi pantalla: `xl`
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿qué diferencia hay entre textContent e innerHTML y por qué no se debe meter en innerHTML lo que escribe el usuario? Pon como ejemplo lo que pasó con `<b>hola</b>`.]
+### ¿Qué diferencia hay entre textContent e innerHTML y por qué no se debe meter en innerHTML lo que escribe el usuario? 
+
+`textContent` trata todo lo que recibo como texto plano. Como el ejemplo de <b>hola</b> donde se mostraban las etiquetas al no ser processadas.
+
+`innerHTML` si lo interpreta como código HTML, por eso el resultado se ve en negrita.
+
+Eso parece inofensivo, pero si lo que se mete en innerHTML lo escribe el usuario, puede colar cualquier etiqueta y hacer un ataque XSS(Cross-Site Scripting). Eso permitiría a un usuaria malicioso robar cookies o sessiones. 
+
+Siempre hay que usar `textContent` para inputs de usuario y innerHTML solo para el propia programador.
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
+- [HTML DOM Elements](https://www.w3schools.com/jsref/dom_obj_all.asp)
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+He usado Claude (Anthropic) para revisar mi app.js. Le pedí que me dijera qué errores tenía, y me señaló, entre otros, que en anadirTarea() faltaba const, que la clase list-group-item estaba mal escrita y que #error5 se mostraba vacío. También le pedí que me explicara la diferencia entre getElementById y querySelector, y la de textContent frente a innerHTML. Con sus respuestas corregí el código yo mismo, probé cada botón en el navegador con la consola abierta y comprobé que todo funcionaba antes de entregarlo.
