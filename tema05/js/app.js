@@ -87,13 +87,14 @@ function activarResaltado() {
       parrafo.classList.add("bg-body-secondary");
     });
 
-    // TODO: lo mismo con "mouseleave" (cuando el ratón sale) para quitar la clase.
+    //// lo mismo con "mouseleave" (cuando el ratón sale) para quitar la clase.
     parrafo.addEventListener("mouseleave", function () {
       parrafo.classList.remove("bg-body-secondary");
     });
   }
 
-  // TODO: un console.log() que diga en cuántos párrafos se ha activado (parrafos.length).
+  ////  un console.log() que diga en cuántos párrafos se ha activado (parrafos.length).
+  console.log(`Resaltado activado en ${parrafos.length} párrafos`)
 }
 
 
@@ -102,8 +103,11 @@ function activarResaltado() {
 // ============================================================
 
 function cambiarTexto() {
+
   // TODO: lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
+  const text = document.getElementById("nuevoTexto").value.trim();
   // TODO: si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
+  const er
   // TODO: si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
 }
 
