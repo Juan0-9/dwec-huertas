@@ -104,15 +104,45 @@ function activarResaltado() {
 
 function cambiarTexto() {
 
-  // TODO: lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
+  ////  lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
   const text = document.getElementById("nuevoTexto").value.trim();
-  // TODO: si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
-  const er
-  // TODO: si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
+  //// si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
+  const error = document.getElementById("error4");
+  const primerP = document.querySelector("#contenido p");
+  if (text === "") {
+    error.classList.remove("d-none");
+    console.log("cambiarTexto: Esta vacio");
+  } else {
+    if (primerP !== null) {
+      primerP.textContent = text;
+      error.classList.add("d-none");
+      console.log(`Primer párrafo cambiado: ${text}`);
+    }
+    else {
+      console.log(`cambiarTexto(): No hay texto que cambiar.`)
+    }
+    
+  }
+  //// si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
 }
 
 function cambiarConHtml() {
+  const text = document.getElementById("nuevoTexto").value.trim();
+  const error = document.getElementById("error4");
+  const primerP = document.querySelector("#contenido p");
   // TODO: lo mismo que cambiarTexto(), pero con innerHTML.
+  if (text === "") {
+    error.classList.remove("d-none");
+    console.log("cambiarTexto: Esta vacio");
+  } else {
+    if (primerP !== null) {
+      primerP.innerHTML= text;
+      error.classList.add("d-none");
+      console.log(`Primer párrafo cambiado: ${text}`);
+    } else {
+      console.log(`cambiarTexto(): No hay texto que cambiar.`);
+    }
+  }
   //       Prueba las dos con <b>hola</b> y explica en el README qué diferencia ves y por qué es peligroso.
 }
 
