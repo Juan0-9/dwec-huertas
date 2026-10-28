@@ -153,31 +153,30 @@ function anadirTarea() {
     error.classList.remove("d-none");
     console.log("añadirTarea: no hay texto que añadir.");
   } else {
-     const li = document.createElement("li");
-     li.classList.add("list-group-form");
-     const checkbox = document.createElement("input");
-     checkbox.setAttribute("type", "checkbox");
-     checkbox.classList.add("form-check-input");
-    document.querySelector("#tareaInput").value = ""; 
-     const span = document.createElement("span");
-     span.textContent = text;
+    const li = document.createElement("li");
+    li.classList.add("list-group-form");
+    const checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("form-check-input");
+    document.querySelector("#tareaInput").value = "";
+    const span = document.createElement("span");
+    span.textContent = text;
 
-     li.append(checkbox, span);
-     listaTareas.append(li);
+    li.append(checkbox, span);
+    listaTareas.append(li);
 
-    error.textContent = "Escribe una tarea."
+    error.textContent = "Escribe una tarea.";
     error.classList.add("d-none");
 
-     const total = document.querySelectorAll("#listaTareas li").length;
-     document.getElementById("totalTareas").textContent = total;
-     console.log(`Tarea añadida: ${text} y un total de ${total} tareas.`);
+    const total = document.querySelectorAll("#listaTareas li").length;
+    document.getElementById("totalTareas").textContent = total;
+    console.log(`Tarea añadida: ${text} y un total de ${total} tareas.`);
   }
   // TODO: si no, crea un <li class="list-group-item"> con dos elementos dentro:
   //         · un <input> de tipo "checkbox" con la clase "form-check-input",
   //         · un <span> con el texto de la tarea (textContent).
   //       Cuelga el <li> de #listaTareas y vacía la casilla (value = "").
   // TODO: actualiza #totalTareas con el número de <li> que hay en la lista.
- 
 }
 
 function borrarCompletadas() {
@@ -204,9 +203,6 @@ function borrarCompletadas() {
         : `Tareas eliminadas: ${marcadas.length} y queda un total de ${total}.`,
     );
   }
-
- 
-
 }
 
 // ============================================================
@@ -221,6 +217,25 @@ function verDatosVentana() {
 
   // TODO: con if / else if, el punto de corte de Bootstrap según el ancho: xs (< 576), sm (≥ 576), md (≥ 768),
   //       lg (≥ 992), xl (≥ 1200) y xxl (≥ 1400). Escríbelo en #datoPunto.
+  let punto = "";
+  if (ancho >= 1400) {
+    punto = "xxl";
+  } else if (ancho >= 1200) {
+    punto = "xl";
+  } else if (ancho >= 992) {
+    punto = "lg";
+  } else if (ancho >= 768) {
+    punto = "md";
+  } else if (ancho >= 576) {
+    punto = "sm";
+  } else {
+    punto = "xs";
+  }
   // TODO: el tamaño de la pantalla (screen.width y screen.height) en #datoPantalla.
   // TODO: la URL (location.href) en #datoUrl y el idioma del navegador (navigator.language) en #datoIdioma.
+  document.querySelector("#datoPunto").textContent = punto;
+  document.querySelector("#datoPantalla").textContent = `Ancho ventana: ${screen.width} px  y altura:${screen.height} px`;
+  document.querySelector("#datoUrl").textContent = location.href;
+  document.querySelector("#datoIdioma").textContent = navigator.language;
+
 }
