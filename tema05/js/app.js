@@ -157,16 +157,16 @@ function anadirTarea() {
      li.classList.add("list-group-form");
      const checkbox = document.createElement("input");
      checkbox.setAttribute("type", "checkbox");
-     checkbox.setAttribute("value", "");
      checkbox.classList.add("form-check-input");
-
+    document.querySelector("#tareaInput").value = ""; 
      const span = document.createElement("span");
      span.textContent = text;
 
      li.append(checkbox, span);
      listaTareas.append(li);
 
-     error.classList.add("d-none");
+    error.textContent = "Escribe una tarea."
+    error.classList.add("d-none");
 
      const total = document.querySelectorAll("#listaTareas li").length;
      document.getElementById("totalTareas").textContent = total;
@@ -187,23 +187,25 @@ function borrarCompletadas() {
   // TODO: si no hay ninguna, avisa en #error5. Si hay, recórrelas con for…of y borra el <li> de cada una
   //       (el <li> es el padre de la casilla: parentElement).
   if (marcadas.length === 0) {
+    error.textContent = "Marca una o varias tareas.";
     error.classList.remove("d-none");
     console.log("BorrarTareas: noy hay tareas o no estan marcadas.");
   } else {
-    for (tarea of marcadas) {
+    for (const tarea of marcadas) {
       tarea.parentElement.remove();
     }
     error.classList.add("d-none");
+    //// actualiza #totalTareas.
+    const total = document.querySelectorAll("#listaTareas li").length;
+    document.getElementById("totalTareas").textContent = total;
+    console.log(
+      marcadas.length === 1
+        ? `Tarea eliminada: ${marcadas.length} y queda un total de ${total}.`
+        : `Tareas eliminadas: ${marcadas.length} y queda un total de ${total}.`,
+    );
   }
 
-  //// actualiza #totalTareas.
-  const total = document.querySelectorAll("#listaTareas li").length;
-  document.getElementById("totalTareas").textContent = total;
-  console.log(
-    marcadas.length === 1
-      ? `Tarea eliminada: ${marcadas.length} y queda un total de ${total}.`
-      : `Tareas eliminadas: ${marcadas.length} y queda un total de ${total}.`,
-  );
+ 
 
 }
 
