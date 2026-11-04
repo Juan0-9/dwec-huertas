@@ -29,9 +29,6 @@ function comoTexto(lista) {
 // Ejercicio 1 · Ficha de estudiante
 // ============================================================
 
-// TODO: completa el objeto literal con tus datos: nombre, apellidos, edad y curso.
-// TODO: añádele el método presentarse(), que devuelve una frase con this.nombre, this.apellidos, this.edad y this.curso.
-//       Por ejemplo: «Soy [nombre] [apellidos], tengo [edad] años y estudio [curso].»
 const estudiante = {
   nombre: "Juan Hakram",
   apellidos: "Huertas Chergui",
@@ -131,12 +128,29 @@ function anadirColor() {
 }
 
 function quitarUltimo() {
-  // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
-  // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
+
+  if(colores.length === 0) {
+    avisar2("No hay colores que quitar.");
+    return;
+  }
+
+  const colorQuitado = colores.pop();
+
+  mostrarColores();
+  
+  console.log(`Ejercicio 2 - Color quitado con pop: ${colorQuitado}. Colores: ${comoTexto(colores)} `);
 }
 
 function quitarPrimero() {
-  // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
+  if (colores.length === 0) {
+    avisar2("No hay colores que quitar.");
+    return;
+  }
+
+  const colorQuitado = colores.shift();
+
+  mostrarColores();
+  console.log(`Ejercicio 2 - Color quitado con shift: ${colorQuitado}. Colores: ${comoTexto(colores)}`);
 }
 
 mostrarColores(); // pinta los tres colores de partida nada más cargar
@@ -179,7 +193,11 @@ function pintarProductos(lista) {
 }
 
 function mostrarProductos() {
-  // TODO: pinta todos los productos con pintarProductos() y escribe en #mensaje3 cuántos hay.
+  // TODO: pinta todos los productos con pintarProductos()
+  //  y escribe en #mensaje3 cuántos hay.
+
+  pintarProductos(productos);
+  document.querySelector("#mensaje3").textContent = `Hay ${productos.length} productos.`;
 }
 
 function ordenarPorPrecio() {
