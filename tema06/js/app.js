@@ -1,5 +1,5 @@
 /*
-  Tarea 6 · DWEC · [Tu nombre y apellidos]
+  Tarea 6 · DWEC · Juan Hakram Huertas Chergui
   Objetos y arrays.
 
   Cómo usar esta plantilla:
@@ -16,7 +16,6 @@
 
 console.log("app.js cargado");
 
-
 // ============================================================
 // Ayuda: un array como texto, por ejemplo [1, 2, 3]
 // (ya está hecha: úsala cuando quieras enseñar un array)
@@ -26,7 +25,6 @@ function comoTexto(lista) {
   return "[" + lista.join(", ") + "]";
 }
 
-
 // ============================================================
 // Ejercicio 1 · Ficha de estudiante
 // ============================================================
@@ -35,27 +33,59 @@ function comoTexto(lista) {
 // TODO: añádele el método presentarse(), que devuelve una frase con this.nombre, this.apellidos, this.edad y this.curso.
 //       Por ejemplo: «Soy [nombre] [apellidos], tengo [edad] años y estudio [curso].»
 const estudiante = {
+  nombre: "Juan Hakram",
+  apellidos: "Huertas Chergui",
+  edad: 28,
+  curso: "2º DAW",
 
+  presentarse: function () {
+    return `Soy ${this.nombre} ${this.apellidos}, tengo ${this.edad} años y estudio ${this.curso}.`;
+  }
 };
 
+/*
+ * Muestra la ficha del estudiante.
+ * Crea un <ul> con un <li> por propiedad y un <p> con la frase de presentarse().
+ */
 function verFicha() {
-  // TODO: vacía #salida1 (textContent = "").
-  // TODO: crea un <ul class="list-group"> con un <li class="list-group-item"> por propiedad: «nombre: ...», «edad: ...».
-  //       Pista: guarda las claves en un array, ["nombre", "apellidos", "edad", "curso"], recórrelo con forEach
-  //       y lee cada valor con corchetes: estudiante[clave].
-  // TODO: debajo, un <p> con la frase de estudiante.presentarse().
-  // TODO: console.log() del objeto entero.
+  const salida = document.querySelector("#salida1");
+  salida.textContent = "";
+
+  const claves = ["nombre", "apellidos", "edad", "curso"];
+  const ul = document.createElement("ul");
+  ul.classList.add("list-group");
+
+  claves.forEach(function (clave) {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    li.textContent = `${clave}: ${estudiante[clave]}`;
+    ul.append(li);
+  });
+
+  salida.append(ul);
+
+  
+  const p = document.createElement("p");
+  p.textContent = estudiante.presentarse();
+  salida.append(p);
+
+  console.log("Ejercicio 1 - Objeto Estudiante: ", estudiante);
 }
 
 function cumplirAnios() {
-  // TODO: suma 1 a la edad del estudiante y vuelve a pintar la ficha (llama a verFicha()).
+
+  estudiante.edad++;
+  verFicha();
+  console.log("Ejercicio 1 - !Felicidades! Edad actualizada: ", estudiante.edad);
 }
 
 function quitarCurso() {
-  // TODO: borra la propiedad curso con delete y vuelve a pintar la ficha.
-  //       Fíjate en lo que sale ahora en el curso y explícalo en el README.
-}
+ 
+  delete estudiante.curso;
+  verFicha();
 
+  console.log("Ejercicio 1 - Curso borrado: ", estudiante.curso);
+}
 
 // ============================================================
 // Ejercicio 2 · Colores
@@ -66,7 +96,7 @@ const colores = ["rojo", "verde", "azul"];
 
 function mostrarColores() {
   const lista = document.querySelector("#listaColores");
-  lista.textContent = "";   // vaciamos la lista antes de volver a pintarla
+  lista.textContent = ""; // vaciamos la lista antes de volver a pintarla
 
   colores.forEach(function (color) {
     const li = document.createElement("li");
@@ -93,7 +123,7 @@ function anadirColor() {
     return;
   }
 
-  colores.push(color);   // push añade al final
+  colores.push(color); // push añade al final
   casilla.value = "";
   document.querySelector("#aviso2").classList.add("d-none");
   mostrarColores();
@@ -109,8 +139,7 @@ function quitarPrimero() {
   // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
 }
 
-mostrarColores();   // pinta los tres colores de partida nada más cargar
-
+mostrarColores(); // pinta los tres colores de partida nada más cargar
 
 // ============================================================
 // Ejercicio 3 · Catálogo de productos
@@ -123,7 +152,7 @@ const productos = [
   { nombre: "Monitor 27 pulgadas", precio: 189, categoria: "Pantallas" },
   { nombre: "Alfombrilla XL", precio: 12, categoria: "Accesorios" },
   { nombre: "Webcam HD", precio: 49.99, categoria: "Vídeo" },
-  { nombre: "Auriculares con micro", precio: 59, categoria: "Audio" }
+  { nombre: "Auriculares con micro", precio: 59, categoria: "Audio" },
 ];
 
 // Ya está hecha: pinta en la tabla la lista de productos que le pases
@@ -171,8 +200,7 @@ function buscarProducto() {
   //       Si lo encuentra, píntalo solo a él: pintarProductos([encontrado]).
 }
 
-mostrarProductos();   // la tabla completa nada más cargar
-
+mostrarProductos(); // la tabla completa nada más cargar
 
 // ============================================================
 // Ejercicio 4 · Notas
@@ -180,7 +208,7 @@ mostrarProductos();   // la tabla completa nada más cargar
 
 const alumno = {
   nombre: "[Tu nombre]",
-  notas: []
+  notas: [],
   // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
   //       si es válida, la añade a this.notas con push y devuelve true.
   // TODO: método media(): si no hay notas devuelve 0; si hay, la suma (con reduce) dividida entre el número de notas.
@@ -206,7 +234,6 @@ function borrarNotas() {
 
 mostrarNotas();
 
-
 // ============================================================
 // Ejercicio 5 · map, filter y reduce
 // ============================================================
@@ -231,13 +258,21 @@ function verCadena() {
   //       Escribe en #salida5 una línea por paso.
 }
 
-
 // ============================================================
 // Ejercicio 6 · Ciudades
 // ============================================================
 
-const ciudadesOriginal = ["Granada", "Sevilla", "Málaga", "Córdoba", "Jaén", "Almería", "Cádiz", "Huelva"];
-let ciudades = [...ciudadesOriginal];   // una copia: splice cambia ciudades y así podemos restaurarla
+const ciudadesOriginal = [
+  "Granada",
+  "Sevilla",
+  "Málaga",
+  "Córdoba",
+  "Jaén",
+  "Almería",
+  "Cádiz",
+  "Huelva",
+];
+let ciudades = [...ciudadesOriginal]; // una copia: splice cambia ciudades y así podemos restaurarla
 
 function mostrarCiudades() {
   // TODO: vacía #ciudades y pon un badge por ciudad con su posición: «0 · Granada», «1 · Sevilla»...
