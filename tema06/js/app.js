@@ -197,25 +197,64 @@ function mostrarProductos() {
   //  y escribe en #mensaje3 cuántos hay.
 
   pintarProductos(productos);
-  document.querySelector("#mensaje3").textContent = `Hay ${productos.length} productos.`;
+  document.querySelector("#mensaje3").textContent = productos.length === 1 ? "Hay 1 producto." : `Hay ${productos.length} productos.`;
+  console.log("Ejercicio 3 - Todos los productos:", productos);
+
 }
 
 function ordenarPorPrecio() {
   // TODO: haz una copia del array con [...productos] y ordénala con sort() de más barato a más caro.
   //       sort necesita una función de comparación: function (a, b) { return ... }.
   //       ¿Por qué una copia? Explícalo en el README.
+  const copiaProductos = [...productos];
+  copiaProductos.sort(function (a, b) {
+    return a.precio - b.precio;
+  });
+
   // TODO: pinta la copia y escribe en #mensaje3 cómo están ordenados.
+  pintarProductos(copiaProductos);
+
+  document.querySelector("#mensaje3").textContent = "Productos ordenados por precio (de más barato a más caro).";
+
+  console.log("Ejercicio 3 - Productos ordenados por precio:", copiaProductos, "Original:", productos);
 }
 
 function filtrarCaros() {
-  // TODO: con filter(), los productos de más de 50 €. Píntalos y escribe en #mensaje3 cuántos son.
+  
+  const masDe50 = productos.filter(function (producto) {
+    return producto.precio > 50;
+  });
+
+  pintarProductos(masDe50);
+
+  document.querySelector("#mensaje3").textContent = masDe50.length === 1 ? "Hay 1 producto de más de 50 €." : `Hay ${masDe50.length} productos de más de 50 €.`;
+
+  console.log(`Ejercicio 3 - Productos de más de 50 €: ${masDe50.length}`, masDe50);
 }
 
 function buscarProducto() {
-  // TODO: lee #buscarProducto (value, trim y toLowerCase). Si está vacío, avisa en #mensaje3.
-  // TODO: con find(), el primer producto cuyo nombre en minúsculas contenga ese texto (includes).
-  // TODO: find devuelve undefined si no encuentra nada: en ese caso, dilo en #mensaje3 y vacía la tabla.
-  //       Si lo encuentra, píntalo solo a él: pintarProductos([encontrado]).
+
+  const textoBuscarProducto = document.querySelector("#buscarProducto").value.trim().toLowerCase();
+  if (textoBuscarProducto === "") {
+    document.querySelector("#mensaje3").textContent = "Por favor, introduce un texto para buscar.";
+    return;
+  }
+
+  const encontrado = productos.find(function (producto) {
+
+    return producto.nombre.toLowerCase().includes(textoBuscarProducto);
+  });
+ 
+  if (encontrado === undefined) {
+    
+    pintarProductos([]);
+    document.querySelector("#mensaje3").textContent = "Producto no encontrado.";
+  } else {
+
+    pintarProductos([encontrado]);
+
+    document.querySelector("#mensaje3").textContent = "Producto encontrado.";
+  }
 }
 
 mostrarProductos(); // la tabla completa nada más cargar
@@ -225,7 +264,7 @@ mostrarProductos(); // la tabla completa nada más cargar
 // ============================================================
 
 const alumno = {
-  nombre: "[Tu nombre]",
+  nombre: "Juan ",
   notas: [],
   // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
   //       si es válida, la añade a this.notas con push y devuelve true.
