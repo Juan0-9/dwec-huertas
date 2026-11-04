@@ -378,16 +378,25 @@ mostrarNotas();
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function dobles(num) {
+function calcularDobles(num) {
   return num.map(function (n) {
     return n * 2;
   });
 }
+function calcularPares(num) {
+  return num.filter(function (n) {
+    return n % 2 === 0;
+  });
+}
+function calcularSuma(num) {
+  return num.reduce(function (total, n) {
+    return total + n;
+  }, 0);
+}
 
 function verDobles() {
-  // TODO: con map(), un array nuevo con el doble de cada número.
-  // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
-  const dobles = dobles(numeros);
+  
+  const dobles = calcularDobles(numeros);
 
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
@@ -403,13 +412,10 @@ function verDobles() {
   contenido.append(p2);
   console.log("Ejercicio 5 ver Dobles - Números originales:", comoTexto(numeros));
 }
-function pares(num) {
-  return num.filter(function (n) {
-    return n % 2 === 0;
-  });
-}
+
+
 function verPares() {
-  const pares = pares(numeros);
+  const pares = calcularPares(numeros);
   
   const contenido = document.querySelector("#salida5");
   contenido.textContent = ""; 
@@ -420,13 +426,9 @@ function verPares() {
   console.log("Ejercicio 5 ver Pares - Pares:", comoTexto(pares));
 }
 
-function suma(num) {
-  return num.reduce(function (total, n) {
-    return total + n;
-  }, 0);
-}
+
 function verSuma() {
-  const suma = suma(numeros);
+  const suma = calcularSuma(numeros);
 
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
@@ -439,21 +441,20 @@ function verSuma() {
 }
 
 function verCadena() {
-  // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
-  //       Escribe en #salida5 una línea por paso.
+  
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
 
   const pPares = document.createElement("p");
-  pPares.textContent = `Pares: ${comoTexto(pares(numeros))}.`;
+  pPares.textContent = `Pares: ${comoTexto(calcularPares(numeros))}.`;
   contenido.append(pPares);
 
   const pDoblePares = document.createElement("p");
-  pDoblePares.textContent = `Dobles de los pares: ${comoTexto(dobles(pares(numeros)))}.`;
+  pDoblePares.textContent = `Dobles de los pares: ${comoTexto(calcularDobles(calcularPares(numeros)))}.`;
   contenido.append(pDoblePares);
 
   const pSumaDoblePares = document.createElement("p");
-  pSumaDoblePares.textContent = `Suma de los dobles de los pares: ${suma(dobles(pares(numeros)))}.`;
+  pSumaDoblePares.textContent = `Suma de los dobles de los pares: ${calcularSuma(calcularDobles(calcularPares(numeros)))}.`;
   contenido.append(pSumaDoblePares);
   
 }
@@ -474,27 +475,71 @@ const ciudadesOriginal = [
 ];
 let ciudades = [...ciudadesOriginal]; // una copia: splice cambia ciudades y así podemos restaurarla
 
+// Pinta las ciudades en la página.
 function mostrarCiudades() {
-  // TODO: vacía #ciudades y pon un badge por ciudad con su posición: «0 · Granada», «1 · Sevilla»...
-  //       Pista: forEach le pasa a tu función dos datos: function (ciudad, posicion) { ... }.
-}
 
+  const contenido = document.querySelector("#ciudades");
+  contenido.textContent = "";
+
+  ciudades.forEach(function (ciudad, posicion) {
+    const badge = document.createElement("span");
+    badge.classList.add("badge", "text-bg-primary");
+    badge.textContent = `${posicion} · ${ciudad}`;
+    contenido.append(badge);
+  });
+
+  console.log(`Ejercicio 6 - Ciudades actuales: ${comoTexto(ciudades)}`);
+}
+// Muestra el resultado de slice() en la página sin modificar el array de ciudades.
 function verSlice() {
-  // TODO: guarda ciudades.slice(2, 5) y escribe en #salida6 qué devuelve y cuántas ciudades siguen en el array.
+
+  const contenido = document.querySelector("#salida6");
+  const resultado = ciudades.slice(2, 5);
+  contenido.textContent = `Slice(2, 5): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`;
+  console.log(`Ejercicio 6 - Slice(2, 5): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`);
 }
 
+// Muestra el resultado de splice() en la página y actualiza el array de ciudades.
 function hacerSplice() {
-  // TODO: si quedan menos de 3 ciudades, avisa en #salida6 de que hay que restaurar y no hagas nada más.
-  // TODO: si no, ciudades.splice(2, 2): escribe en #salida6 qué devuelve y cuántas quedan, y vuelve a pintar.
+
+  if (ciudades.length < 3) {
+    const contenido = document.querySelector("#salida6");
+    contenido.textContent = "No hay suficientes ciudades. Por favor, restaura las ciudades.";
+  } else {
+    const contenido = document.querySelector("#salida6");
+    const resultado = ciudades.splice(2, 2);
+    contenido.textContent = `Splice(2, 2): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`;
+    mostrarCiudades();
+    console.log(`Ejercicio 6 - Splice(2, 2): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`);
+  }
 }
 
+// Restaura el array de ciudades a su estado original.
 function restaurarCiudades() {
-  // TODO: vuelve a copiar ciudadesOriginal en ciudades y pinta.
+
+  ciudades = [...ciudadesOriginal];
+  mostrarCiudades();
+  const contenido = document.querySelector("#salida6");
+  contenido.textContent = "Ciudades restauradas.";
+  console.log(`Ejercicio 6 - Ciudades restauradas: ${comoTexto(ciudades)}`);
 }
 
+// Busca una ciudad en el array y muestra si está y su posición.
+// devuelve -1 si no está. 
+// ! Hay que escribir el nombre exacto de la ciudad, respetando mayúsculas, minúsculas y acentos.
 function buscarCiudad() {
-  // TODO: lee #buscarCiudad (value y trim). Si está vacío, avisa.
-  // TODO: escribe en #salida6 lo que dan includes() e indexOf() con ese nombre. Si no está, indexOf da -1.
+  
+  const contenido = document.querySelector("#salida6");
+  const ciudadABuscar = document.querySelector("#buscarCiudad").value.trim();
+
+  if (ciudadABuscar === "") {
+    contenido.textContent = "Por favor, introduce una ciudad para buscar.";
+    return;
+  } else {
+    const estaEnArray = ciudades.includes(ciudadABuscar);
+    const posicion = ciudades.indexOf(ciudadABuscar);
+    contenido.textContent = `includes(): ${estaEnArray}, indexOf(): ${posicion}`;
+  }
 }
 
 mostrarCiudades();
