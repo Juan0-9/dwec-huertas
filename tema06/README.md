@@ -58,7 +58,8 @@
 ## Fuentes
 
 - [Título de la página](https://enlace-a-la-fuente)
-
+https://4geeks.com/es/how-to/metodo-reduce-javascript
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Indexed_collections
 ## Uso de IA
 
 [Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]

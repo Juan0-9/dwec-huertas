@@ -37,7 +37,7 @@ const estudiante = {
 
   presentarse: function () {
     return `Soy ${this.nombre} ${this.apellidos}, tengo ${this.edad} años y estudio ${this.curso}.`;
-  }
+  },
 };
 
 /*
@@ -61,7 +61,6 @@ function verFicha() {
 
   salida.append(ul);
 
-  
   const p = document.createElement("p");
   p.textContent = estudiante.presentarse();
   salida.append(p);
@@ -70,14 +69,15 @@ function verFicha() {
 }
 
 function cumplirAnios() {
-
   estudiante.edad++;
   verFicha();
-  console.log("Ejercicio 1 - !Felicidades! Edad actualizada: ", estudiante.edad);
+  console.log(
+    "Ejercicio 1 - !Felicidades! Edad actualizada: ",
+    estudiante.edad,
+  );
 }
 
 function quitarCurso() {
- 
   delete estudiante.curso;
   verFicha();
 
@@ -128,8 +128,7 @@ function anadirColor() {
 }
 
 function quitarUltimo() {
-
-  if(colores.length === 0) {
+  if (colores.length === 0) {
     avisar2("No hay colores que quitar.");
     return;
   }
@@ -137,8 +136,10 @@ function quitarUltimo() {
   const colorQuitado = colores.pop();
 
   mostrarColores();
-  
-  console.log(`Ejercicio 2 - Color quitado con pop: ${colorQuitado}. Colores: ${comoTexto(colores)} `);
+
+  console.log(
+    `Ejercicio 2 - Color quitado con pop: ${colorQuitado}. Colores: ${comoTexto(colores)} `,
+  );
 }
 
 function quitarPrimero() {
@@ -150,7 +151,9 @@ function quitarPrimero() {
   const colorQuitado = colores.shift();
 
   mostrarColores();
-  console.log(`Ejercicio 2 - Color quitado con shift: ${colorQuitado}. Colores: ${comoTexto(colores)}`);
+  console.log(
+    `Ejercicio 2 - Color quitado con shift: ${colorQuitado}. Colores: ${comoTexto(colores)}`,
+  );
 }
 
 mostrarColores(); // pinta los tres colores de partida nada más cargar
@@ -192,65 +195,73 @@ function pintarProductos(lista) {
   });
 }
 
+// Muestra todos los productos y el total de ellos.
 function mostrarProductos() {
-  // TODO: pinta todos los productos con pintarProductos()
-  //  y escribe en #mensaje3 cuántos hay.
-
   pintarProductos(productos);
-  document.querySelector("#mensaje3").textContent = productos.length === 1 ? "Hay 1 producto." : `Hay ${productos.length} productos.`;
+  document.querySelector("#mensaje3").textContent =
+    productos.length === 1
+      ? "Hay 1 producto."
+      : `Hay ${productos.length} productos.`;
   console.log("Ejercicio 3 - Todos los productos:", productos);
-
 }
 
+// Ordena los productos por precio de menor a mayor y los pinta.
 function ordenarPorPrecio() {
-  // TODO: haz una copia del array con [...productos] y ordénala con sort() de más barato a más caro.
-  //       sort necesita una función de comparación: function (a, b) { return ... }.
-  //       ¿Por qué una copia? Explícalo en el README.
   const copiaProductos = [...productos];
   copiaProductos.sort(function (a, b) {
     return a.precio - b.precio;
   });
 
-  // TODO: pinta la copia y escribe en #mensaje3 cómo están ordenados.
   pintarProductos(copiaProductos);
 
-  document.querySelector("#mensaje3").textContent = "Productos ordenados por precio (de más barato a más caro).";
+  document.querySelector("#mensaje3").textContent =
+    "Productos ordenados por precio (de más barato a más caro).";
 
-  console.log("Ejercicio 3 - Productos ordenados por precio:", copiaProductos, "Original:", productos);
+  console.log(
+    "Ejercicio 3 - Productos ordenados por precio:",
+    copiaProductos,
+    "Original:",
+    productos,
+  );
 }
-
+// filtra los productos de más de 50 € y los pinta.
 function filtrarCaros() {
-  
   const masDe50 = productos.filter(function (producto) {
     return producto.precio > 50;
   });
 
   pintarProductos(masDe50);
 
-  document.querySelector("#mensaje3").textContent = masDe50.length === 1 ? "Hay 1 producto de más de 50 €." : `Hay ${masDe50.length} productos de más de 50 €.`;
+  document.querySelector("#mensaje3").textContent =
+    masDe50.length === 1
+      ? "Hay 1 producto de más de 50 €."
+      : `Hay ${masDe50.length} productos de más de 50 €.`;
 
-  console.log(`Ejercicio 3 - Productos de más de 50 €: ${masDe50.length}`, masDe50);
+  console.log(
+    `Ejercicio 3 - Productos de más de 50 €: ${masDe50.length}`,
+    masDe50,
+  );
 }
 
 function buscarProducto() {
-
-  const textoBuscarProducto = document.querySelector("#buscarProducto").value.trim().toLowerCase();
+  const textoBuscarProducto = document
+    .querySelector("#buscarProducto")
+    .value.trim()
+    .toLowerCase();
   if (textoBuscarProducto === "") {
-    document.querySelector("#mensaje3").textContent = "Por favor, introduce un texto para buscar.";
+    document.querySelector("#mensaje3").textContent =
+      "Por favor, introduce un texto para buscar.";
     return;
   }
-
+  // Busca el primer producto que contenga el texto en la búsqueda.
   const encontrado = productos.find(function (producto) {
-
     return producto.nombre.toLowerCase().includes(textoBuscarProducto);
   });
- 
+
   if (encontrado === undefined) {
-    
     pintarProductos([]);
     document.querySelector("#mensaje3").textContent = "Producto no encontrado.";
   } else {
-
     pintarProductos([encontrado]);
 
     document.querySelector("#mensaje3").textContent = "Producto encontrado.";
@@ -266,27 +277,97 @@ mostrarProductos(); // la tabla completa nada más cargar
 const alumno = {
   nombre: "Juan ",
   notas: [],
-  // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
-  //       si es válida, la añade a this.notas con push y devuelve true.
-  // TODO: método media(): si no hay notas devuelve 0; si hay, la suma (con reduce) dividida entre el número de notas.
-  //       Recuerda la coma entre una propiedad y la siguiente.
+  //Añade una nota al array de notas
+  //Devuelve false si la nota no es válida.
+  anadirNota: function (nota) {
+    if (Number.isNaN(nota) || nota < 0 || nota > 10) {
+      return false;
+    } else {
+      this.notas.push(nota);
+      return true;
+    }
+  },
+
+  // Calcula la media de las notas.
+  media: function () {
+    if (this.notas.length === 0) {
+      return 0;
+    }
+
+    const suma = this.notas.reduce(function (acumulador, nota) {
+      return acumulador + nota;
+    }, 0);
+    return suma / this.notas.length;
+  },
 };
 
 function mostrarNotas() {
-  // TODO: vacía #notas y pon un badge (<span class="badge">) por nota: verde (text-bg-success) si es de 5 o más,
-  //       rojo (text-bg-danger) si no.
-  // TODO: en #media, «Media de N notas: X» con dos decimales (toFixed(2)), o «Todavía no hay notas.».
+  // Crea un badge para cada nota
+  // y añade la clase correspondiente según el valor de la nota
+  const contenidoNotas = document.querySelector("#notas");
+  contenidoNotas.textContent = "";
+  alumno.notas.forEach(function (nota) {
+    const badge = document.createElement("span");
+    badge.classList.add("badge");
+
+    if (nota >= 5) {
+      badge.classList.add("text-bg-success");
+    } else {
+      badge.classList.add("text-bg-danger");
+    }
+    badge.textContent = nota;
+    contenidoNotas.appendChild(badge);
+  });
+
+  //Mostrar la media de las notas.
+  const media = alumno.media();
+  const contenidoMedia = document.querySelector("#media");
+
+  if (alumno.notas.length === 0) {
+    contenidoMedia.textContent = "Todavía no hay notas.";
+  } else {
+    contenidoMedia.textContent = `Media de ${alumno.notas.length} notas: ${media.toFixed(2)}`;
+  }
+
+  console.log(
+    `Ejercicio 4 - Mostrar notas del alumno:${comoTexto(alumno.notas)}
+     Media: ${media.toFixed(2)}`
+  );
 }
 
 function anadirNota() {
-  // TODO: si #nota está vacía, muestra un error en #error4 (quítale "d-none").
-  //       Ojo: Number("") vale 0, así que esta comprobación va antes de convertir.
-  // TODO: convierte el valor con Number() y llama a alumno.anadirNota(). Si devuelve false, muestra el error.
-  // TODO: si ha ido bien, oculta el error, vacía la casilla y llama a mostrarNotas().
+  const casilla = document.querySelector("#nota");
+  const nota = casilla.value.trim();
+
+  const error = document.querySelector("#error4");
+
+  if (nota === "") {
+    error.textContent = "Escribe una nota antes de añadir.";
+    error.classList.remove("d-none");
+    return;
+  }
+  const notaNumero = Number(nota);
+  if (!alumno.anadirNota(notaNumero)) {
+    error.textContent = "La nota debe ser un número entre 0 y 10.";
+    error.classList.remove("d-none");
+    return;
+  } else {
+    console.log(
+      `Ejercicio 4 - Nota añadida: ${notaNumero}. Notas actuales:
+      ${comoTexto(alumno.notas)}`
+    );
+  }
+
+  error.classList.add("d-none");
+  casilla.value = "";
+  mostrarNotas();
 }
 
 function borrarNotas() {
-  // TODO: deja alumno.notas vacío y vuelve a pintar.
+  alumno.notas = [];
+  mostrarNotas();
+
+  console.log("Ejercicio 4 - Notas borradas.");
 }
 
 mostrarNotas();
@@ -297,22 +378,84 @@ mostrarNotas();
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+function dobles(num) {
+  return num.map(function (n) {
+    return n * 2;
+  });
+}
+
 function verDobles() {
   // TODO: con map(), un array nuevo con el doble de cada número.
   // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
-}
+  const dobles = dobles(numeros);
 
+  const contenido = document.querySelector("#salida5");
+  contenido.textContent = "";
+
+  const p = document.createElement("p");
+  p.textContent = `Dobles: ${comoTexto(dobles)}.`;
+  contenido.append(p);
+
+  console.log("Ejercicio 5 ver Dobles - Dobles:", comoTexto(dobles));
+
+  const p2 = document.createElement("p");
+  p2.textContent = `Números: ${comoTexto(numeros)}.`;
+  contenido.append(p2);
+  console.log("Ejercicio 5 ver Dobles - Números originales:", comoTexto(numeros));
+}
+function pares(num) {
+  return num.filter(function (n) {
+    return n % 2 === 0;
+  });
+}
 function verPares() {
-  // TODO: con filter(), los números pares (n % 2 === 0). Escríbelos en #salida5 como en verDobles().
+  const pares = pares(numeros);
+  
+  const contenido = document.querySelector("#salida5");
+  contenido.textContent = ""; 
+
+  const p = document.createElement("p");
+  p.textContent = `Pares: ${comoTexto(pares)}.`;
+  contenido.append(p);
+  console.log("Ejercicio 5 ver Pares - Pares:", comoTexto(pares));
 }
 
+function suma(num) {
+  return num.reduce(function (total, n) {
+    return total + n;
+  }, 0);
+}
 function verSuma() {
-  // TODO: con reduce(), la suma de todos los números (empieza en 0). Escríbela en #salida5.
+  const suma = suma(numeros);
+
+  const contenido = document.querySelector("#salida5");
+  contenido.textContent = "";
+
+  const p = document.createElement("p");
+  p.textContent = `Suma de ${comoTexto(numeros)}: ${suma}.`;
+  contenido.append(p);
+
+  console.log(`Ejercicio 5 ver Suma - Suma: ${suma}`);
 }
 
 function verCadena() {
   // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
   //       Escribe en #salida5 una línea por paso.
+  const contenido = document.querySelector("#salida5");
+  contenido.textContent = "";
+
+  const pPares = document.createElement("p");
+  pPares.textContent = `Pares: ${comoTexto(pares(numeros))}.`;
+  contenido.append(pPares);
+
+  const pDoblePares = document.createElement("p");
+  pDoblePares.textContent = `Dobles de los pares: ${comoTexto(dobles(pares(numeros)))}.`;
+  contenido.append(pDoblePares);
+
+  const pSumaDoblePares = document.createElement("p");
+  pSumaDoblePares.textContent = `Suma de los dobles de los pares: ${suma(dobles(pares(numeros)))}.`;
+  contenido.append(pSumaDoblePares);
+  
 }
 
 // ============================================================
