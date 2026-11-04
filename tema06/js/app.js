@@ -72,7 +72,7 @@ function cumplirAnios() {
   estudiante.edad++;
   verFicha();
   console.log(
-    "Ejercicio 1 - !Felicidades! Edad actualizada: ",
+    "Ejercicio 1 - ¡Felicidades! Edad actualizada: ",
     estudiante.edad,
   );
 }
@@ -132,7 +132,7 @@ function quitarUltimo() {
     avisar2("No hay colores que quitar.");
     return;
   }
-
+  document.querySelector("#aviso2").classList.add("d-none");
   const colorQuitado = colores.pop();
 
   mostrarColores();
@@ -147,7 +147,7 @@ function quitarPrimero() {
     avisar2("No hay colores que quitar.");
     return;
   }
-
+  document.querySelector("#aviso2").classList.add("d-none");
   const colorQuitado = colores.shift();
 
   mostrarColores();
@@ -261,10 +261,12 @@ function buscarProducto() {
   if (encontrado === undefined) {
     pintarProductos([]);
     document.querySelector("#mensaje3").textContent = "Producto no encontrado.";
+    console.log("Ejercicio 3 - Buscar Producto: Producto no encontrado");
   } else {
     pintarProductos([encontrado]);
 
     document.querySelector("#mensaje3").textContent = "Producto encontrado.";
+    console.log(`Ejercicio 3 - Buscar Producto: ${comoTexto([encontrado])}`);
   }
 }
 
@@ -275,7 +277,7 @@ mostrarProductos(); // la tabla completa nada más cargar
 // ============================================================
 
 const alumno = {
-  nombre: "Juan ",
+  nombre: "Juan",
   notas: [],
   //Añade una nota al array de notas
   //Devuelve false si la nota no es válida.
@@ -331,7 +333,7 @@ function mostrarNotas() {
 
   console.log(
     `Ejercicio 4 - Mostrar notas del alumno:${comoTexto(alumno.notas)}
-     Media: ${media.toFixed(2)}`
+     Media: ${media.toFixed(2)}`,
   );
 }
 
@@ -354,7 +356,7 @@ function anadirNota() {
   } else {
     console.log(
       `Ejercicio 4 - Nota añadida: ${notaNumero}. Notas actuales:
-      ${comoTexto(alumno.notas)}`
+      ${comoTexto(alumno.notas)}`,
     );
   }
 
@@ -378,25 +380,10 @@ mostrarNotas();
 
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-function calcularDobles(num) {
-  return num.map(function (n) {
+function verDobles() {
+  const dobles = numeros.map(function (n) {
     return n * 2;
   });
-}
-function calcularPares(num) {
-  return num.filter(function (n) {
-    return n % 2 === 0;
-  });
-}
-function calcularSuma(num) {
-  return num.reduce(function (total, n) {
-    return total + n;
-  }, 0);
-}
-
-function verDobles() {
-  
-  const dobles = calcularDobles(numeros);
 
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
@@ -410,25 +397,35 @@ function verDobles() {
   const p2 = document.createElement("p");
   p2.textContent = `Números: ${comoTexto(numeros)}.`;
   contenido.append(p2);
-  console.log("Ejercicio 5 ver Dobles - Números originales:", comoTexto(numeros));
+  console.log(
+    "Ejercicio 5 ver Dobles - Números originales:",
+    comoTexto(numeros),
+  );
 }
 
-
 function verPares() {
-  const pares = calcularPares(numeros);
-  
+  const pares = numeros.filter(function (n) {
+    return n % 2 === 0;
+  });
+
   const contenido = document.querySelector("#salida5");
-  contenido.textContent = ""; 
+  contenido.textContent = "";
 
   const p = document.createElement("p");
   p.textContent = `Pares: ${comoTexto(pares)}.`;
   contenido.append(p);
   console.log("Ejercicio 5 ver Pares - Pares:", comoTexto(pares));
+
+  const p2 = document.createElement("p");
+  p2.textContent = `Números: ${comoTexto(numeros)}.`;
+  contenido.append(p2);
+  console.log("Ejercicio 5 verPares - Números originales:", comoTexto(numeros));
 }
 
-
 function verSuma() {
-  const suma = calcularSuma(numeros);
+  const suma = numeros.reduce(function (total, n) {
+    return total + n;
+  }, 0);
 
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
@@ -440,23 +437,36 @@ function verSuma() {
   console.log(`Ejercicio 5 ver Suma - Suma: ${suma}`);
 }
 
+// Muestra los pares, sus dobles y la suma de los dobles.
 function verCadena() {
-  
+  const pares = numeros.filter(function (n) {
+    return n % 2 === 0;
+  });
+  const dobles = pares.map(function (n) {
+    return n * 2;
+  });
+  const suma = dobles.reduce(function (total, n) {
+    return total + n;
+  }, 0);
+
   const contenido = document.querySelector("#salida5");
   contenido.textContent = "";
 
   const pPares = document.createElement("p");
-  pPares.textContent = `Pares: ${comoTexto(calcularPares(numeros))}.`;
+  pPares.textContent = `Pares: ${comoTexto(pares)}.`;
   contenido.append(pPares);
 
   const pDoblePares = document.createElement("p");
-  pDoblePares.textContent = `Dobles de los pares: ${comoTexto(calcularDobles(calcularPares(numeros)))}.`;
+  pDoblePares.textContent = `Dobles de los pares: ${comoTexto(dobles)}.`;
   contenido.append(pDoblePares);
 
   const pSumaDoblePares = document.createElement("p");
-  pSumaDoblePares.textContent = `Suma de los dobles de los pares: ${calcularSuma(calcularDobles(calcularPares(numeros)))}.`;
+  pSumaDoblePares.textContent = `Suma de los dobles de los pares: ${suma}.`;
   contenido.append(pSumaDoblePares);
-  
+
+  console.log(
+    `Ejercicio 5 ver Cadena - Pares: ${comoTexto(pares)}, Dobles de los pares: ${comoTexto(dobles)}, Suma de los dobles de los pares: ${suma}`,
+  );
 }
 
 // ============================================================
@@ -477,7 +487,6 @@ let ciudades = [...ciudadesOriginal]; // una copia: splice cambia ciudades y as�
 
 // Pinta las ciudades en la página.
 function mostrarCiudades() {
-
   const contenido = document.querySelector("#ciudades");
   contenido.textContent = "";
 
@@ -492,31 +501,33 @@ function mostrarCiudades() {
 }
 // Muestra el resultado de slice() en la página sin modificar el array de ciudades.
 function verSlice() {
-
   const contenido = document.querySelector("#salida6");
   const resultado = ciudades.slice(2, 5);
-  contenido.textContent = `Slice(2, 5): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`;
-  console.log(`Ejercicio 6 - Slice(2, 5): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`);
+  contenido.textContent = `Slice(2, 5): ${comoTexto(resultado)}. Quedan ${ciudades.length} ciudades en el array.`;
+  console.log(
+    `Ejercicio 6 - Slice(2, 5): ${comoTexto(resultado)}. Quedan ${ciudades.length} ciudades en el array.`,
+  );
 }
 
 // Muestra el resultado de splice() en la página y actualiza el array de ciudades.
 function hacerSplice() {
-
+  const contenido = document.querySelector("#salida6");
   if (ciudades.length < 3) {
-    const contenido = document.querySelector("#salida6");
-    contenido.textContent = "No hay suficientes ciudades. Por favor, restaura las ciudades.";
+    contenido.textContent =
+      "No hay suficientes ciudades. Por favor, restaura las ciudades.";
+    console.log("Ejercicio 6 - Splice: no hay suficientes ciudades.");
   } else {
-    const contenido = document.querySelector("#salida6");
     const resultado = ciudades.splice(2, 2);
-    contenido.textContent = `Splice(2, 2): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`;
+    contenido.textContent = `Splice(2, 2): ${comoTexto(resultado)}. Quedan ${ciudades.length} ciudades en el array.`;
     mostrarCiudades();
-    console.log(`Ejercicio 6 - Splice(2, 2): ${comoTexto(resultado)}. Quedan ${resultado.length} ciudades en el array.`);
+    console.log(
+      `Ejercicio 6 - Splice(2, 2): ${comoTexto(resultado)}. Quedan ${ciudades.length} ciudades en el array.`,
+    );
   }
 }
 
 // Restaura el array de ciudades a su estado original.
 function restaurarCiudades() {
-
   ciudades = [...ciudadesOriginal];
   mostrarCiudades();
   const contenido = document.querySelector("#salida6");
@@ -525,10 +536,9 @@ function restaurarCiudades() {
 }
 
 // Busca una ciudad en el array y muestra si está y su posición.
-// devuelve -1 si no está. 
+// devuelve -1 si no está.
 // ! Hay que escribir el nombre exacto de la ciudad, respetando mayúsculas, minúsculas y acentos.
 function buscarCiudad() {
-  
   const contenido = document.querySelector("#salida6");
   const ciudadABuscar = document.querySelector("#buscarCiudad").value.trim();
 
@@ -539,6 +549,9 @@ function buscarCiudad() {
     const estaEnArray = ciudades.includes(ciudadABuscar);
     const posicion = ciudades.indexOf(ciudadABuscar);
     contenido.textContent = `includes(): ${estaEnArray}, indexOf(): ${posicion}`;
+    console.log(
+      `Ejercicio 6 - includes(): ${estaEnArray}, indexOf(): ${posicion}`,
+    );
   }
 }
 
