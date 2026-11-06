@@ -1,5 +1,5 @@
 /*
-  Tarea 7 · DWEC · [Tu nombre y apellidos]
+  Tarea 7 · DWEC · Juan Hakram Huertas Chergui
   Funciones, flechas y clases.
 
   Cómo usar esta plantilla:
@@ -38,12 +38,11 @@ function pintarLista(selector, textos) {
 // Ejercicio 1 · Precio final
 // ============================================================
 
-// TODO: calcularPrecio(base, iva, descuento) devuelve el precio final con return. No lee ni pinta nada.
-//       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
-//       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
-//       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
-function calcularPrecio(base, iva, descuento) {
-
+//Calcular precio en con base, iva(21 por defecto) y descuento(0 por defecto)
+function calcularPrecio(base, iva = 21, descuento = 0) {
+  const baseConDescuento = base - (base * (descuento / 100));
+  const totalConIVA = baseConDescuento * (1 + iva / 100);
+  return totalConIVA;
 }
 
 // Ya está hecha: 74.8 → "74.80 €"
@@ -53,11 +52,39 @@ function formatearEuros(cantidad) {
 
 function mostrarPrecio() {
   // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
+  const error = document.querySelector("#error1");
+  
+  const baseIn = document.querySelector("#base").value.trim();
+  const base = Number(baseIn);
+  const iva = Number(document.querySelector("#iva").value);
+  const descuento = document.querySelector("#descuento").value;
+  let total;
   // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
+  if (baseIn === ""|| isNaN(base) || base < 0) {
+    error.textContent = "";
+    error.classList.remove("d-none");
+    error.append("Base está vacía o es negativa.")
+  }
   // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
   //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
+  else if(!descuento) {
+    total = calcularPrecio(base, iva);
+  } else {
+    total = calcularPrecio(base, iva, descuento);
+  }
+
   // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
   //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
+  if (total || (descuento >= 0 && descuento <= 100)) {
+    error.classList.add("d-none");
+    pintarLista(
+      "#salida1",
+      `Precio sin IVA: ${formatearEuros(base)}`,
+      `Descuento: ${descuento}%`,
+      `IVA: ${iva}%`,
+      `Precio final: ${formatearEuros(total)}`,
+    );
+  }
 }
 
 
