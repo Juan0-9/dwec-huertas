@@ -15,7 +15,6 @@
 
 console.log("app.js cargado");
 
-
 // ============================================================
 // Ayuda: pinta una lista de textos en un <ul class="list-group">
 // (ya está hecha, y su forEach ya lleva una flecha: es el modelo)
@@ -33,14 +32,13 @@ function pintarLista(selector, textos) {
   });
 }
 
-
 // ============================================================
 // Ejercicio 1 · Precio final
 // ============================================================
 
 //Calcular precio en con base, iva(21 por defecto) y descuento(0 por defecto)
 function calcularPrecio(base, iva = 21, descuento = 0) {
-  const baseConDescuento = base - (base * (descuento / 100));
+  const baseConDescuento = base - base * (descuento / 100);
   const totalConIVA = baseConDescuento * (1 + iva / 100);
   return totalConIVA;
 }
@@ -51,23 +49,22 @@ function formatearEuros(cantidad) {
 }
 
 function mostrarPrecio() {
-  // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
   const error = document.querySelector("#error1");
-  
+
   const baseIn = document.querySelector("#base").value.trim();
   const base = Number(baseIn);
   const iva = Number(document.querySelector("#iva").value);
   const descuento = document.querySelector("#descuento").value;
   let total;
-  // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
-  if (baseIn === ""|| isNaN(base) || base < 0) {
+
+  if (baseIn === "" || isNaN(base) || base < 0) {
     error.textContent = "";
     error.classList.remove("d-none");
-    error.append("Base está vacía o es negativa.")
+    error.append("Base está vacía o es negativa.");
   }
   // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
   //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  else if(!descuento) {
+  else if (!descuento) {
     total = calcularPrecio(base, iva);
   } else {
     total = calcularPrecio(base, iva, descuento);
@@ -75,18 +72,17 @@ function mostrarPrecio() {
 
   // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
   //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
-  if (total || (descuento >= 0 && descuento <= 100)) {
+  // Error en : condicion
+  if (total || (descuento >= 0 && descuento <= 100) || descuento) {
     error.classList.add("d-none");
-    pintarLista(
-      "#salida1",
+    pintarLista("#salida1", [
       `Precio sin IVA: ${formatearEuros(base)}`,
       `Descuento: ${descuento}%`,
       `IVA: ${iva}%`,
       `Precio final: ${formatearEuros(total)}`,
-    );
+    ]);
   }
 }
-
 
 // ============================================================
 // Ejercicio 2 · Películas: de function a flecha
@@ -98,7 +94,7 @@ const peliculas = [
   { titulo: "Interstellar", anio: 2014, duracion: 169 },
   { titulo: "Regreso al futuro", anio: 1985, duracion: 116 },
   { titulo: "Parásitos", anio: 2019, duracion: 132 },
-  { titulo: "Toy Story", anio: 1995, duracion: 81 }
+  { titulo: "Toy Story", anio: 1995, duracion: 81 },
 ];
 
 // Ya está hecha: una película como texto, «Coco (2017) · 105 min»
@@ -111,38 +107,37 @@ function comoTexto(pelicula) {
 //       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
 
 function verTitulos() {
-  const titulos = peliculas.map(function (pelicula) {
-    return pelicula.titulo;
-  });
+  const titulos = peliculas.map((pelicula) => pelicula.titulo);
   pintarLista("#salida2", titulos);
-  document.querySelector("#mensaje2").textContent = `${titulos.length} títulos.`;
+  document.querySelector("#mensaje2").textContent =
+    `${titulos.length} títulos.`;
   console.log("Ejercicio 2: map →", titulos);
 }
 
 function verLargas() {
-  const largas = peliculas.filter(function (pelicula) {
-    return pelicula.duracion > 120;
-  });
-  pintarLista("#salida2", largas.map(comoTexto));   // comoTexto ya es una función: se pasa sin paréntesis
-  document.querySelector("#mensaje2").textContent = `${largas.length} películas duran más de 2 horas.`;
+  const largas = peliculas.filter((pelicula) => pelicula.duracion > 120);
+  pintarLista("#salida2", largas.map(comoTexto)); // comoTexto ya es una función: se pasa sin paréntesis
+  document.querySelector("#mensaje2").textContent =
+    `${largas.length} películas duran más de 2 horas.`;
   console.log("Ejercicio 2: filter →", largas);
 }
 
 function ordenarPorAnio() {
-  const ordenadas = [...peliculas].sort(function (a, b) {   // una copia: sort cambia el original
-    return a.anio - b.anio;
-  });
+  const ordenadas = [...peliculas].sort((a, b) => a.anio - b.anio); // una copia: sort cambia el original
   pintarLista("#salida2", ordenadas.map(comoTexto));
-  document.querySelector("#mensaje2").textContent = "De la más antigua a la más reciente.";
+  document.querySelector("#mensaje2").textContent =
+    "De la más antigua a la más reciente.";
   console.log("Ejercicio 2: sort →", ordenadas);
 }
 
 function verDuracionTotal() {
-  const minutos = peliculas.reduce(function (total, pelicula) {
-    return total + pelicula.duracion;
-  }, 0);
+  const minutos = peliculas.reduce(
+    (total, pelicula) => total + pelicula.duracion,
+    0,
+  );
   pintarLista("#salida2", [`${minutos} minutos de películas`]);
-  document.querySelector("#mensaje2").textContent = "La suma de las seis duraciones.";
+  document.querySelector("#mensaje2").textContent =
+    "La suma de las seis duraciones.";
   console.log("Ejercicio 2: reduce →", minutos);
 }
 
@@ -150,21 +145,30 @@ function buscarAntigua() {
   // TODO: el callback nuevo, ya con flecha: con find(), la primera película anterior a 1990.
   // TODO: find devuelve undefined si no hay ninguna: dilo en #mensaje2 y vacía la lista.
   //       Si la encuentra, píntala con pintarLista("#salida2", [comoTexto(antigua)]).
+  const antigua = peliculas.find((pelicula) => pelicula.anio < 1990);
+  pintarLista("#salida2", [comoTexto(antigua)]);
+  document.querySelector("#mensaje2").textContent =
+    "Find devuelve undefined si no hay ninguna.";
+  console.log("Ejercicio 2: find →", antigua);
 }
-
 
 // ============================================================
 // Ejercicio 3 · Tu propio callback
 // ============================================================
 
 const numeros = [3, -1, 4, -1, 5, 9];
-document.querySelector("#numeros3").textContent = `const numeros = [${numeros.join(", ")}];`;
+document.querySelector("#numeros3").textContent =
+  `const numeros = [${numeros.join(", ")}];`;
 
 // TODO: transformar(lista, operacion) hace a mano lo que hace map, sin usar map:
 //       recorre lista con for…of, llama a operacion con cada elemento, guarda lo que devuelve
 //       en un array nuevo y, al final, devuelve ese array.
 function transformar(lista, operacion) {
-
+  let copia = [];
+  for (let x of lista) {
+    copia.push(operacion(x));
+  }
+  return copia;
 }
 
 // Ya está hecha: escribe en #salida3 tu resultado, el de map y numeros
@@ -174,7 +178,7 @@ function mostrar3(nombre, resultado, conMap) {
   const lineas = [
     `${nombre} → [${resultado.join(", ")}]`,
     `con map → [${conMap.join(", ")}]`,
-    `numeros → [${numeros.join(", ")}] (no cambia)`
+    `numeros → [${numeros.join(", ")}] (no cambia)`,
   ];
   lineas.forEach((linea) => {
     const p = document.createElement("p");
@@ -187,7 +191,11 @@ function mostrar3(nombre, resultado, conMap) {
 // El modelo: funcionará cuando hayas escrito transformar()
 function verDobles() {
   const resultado = transformar(numeros, (n) => n * 2);
-  mostrar3("dobles", resultado, numeros.map((n) => n * 2));
+  mostrar3(
+    "dobles",
+    resultado,
+    numeros.map((n) => n * 2),
+  );
   console.log("Ejercicio 3: dobles →", resultado);
 }
 
@@ -200,7 +208,6 @@ function verAbsolutos() {
   //       así que se puede pasar tal cual, sin paréntesis.
 }
 
-
 // ============================================================
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
@@ -208,9 +215,7 @@ function verAbsolutos() {
 // TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
 //       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
 //       paso vale 1 por defecto.
-function crearContador(paso) {
-
-}
+function crearContador(paso) {}
 
 const contarDeUno = crearContador();
 const contarDeCinco = crearContador(5);
@@ -225,7 +230,6 @@ function sumarUno() {
 function sumarCinco() {
   // TODO: lo mismo con contarDeCinco y #cuenta5.
 }
-
 
 // ============================================================
 // Ejercicio 5 · Clases
@@ -277,7 +281,9 @@ function pintarAlumnos() {
       media.classList.add("text-bg-secondary");
       media.textContent = "Sin notas";
     } else {
-      media.classList.add(alumno.media() >= 5 ? "text-bg-success" : "text-bg-danger");
+      media.classList.add(
+        alumno.media() >= 5 ? "text-bg-success" : "text-bg-danger",
+      );
       media.textContent = `Media ${alumno.media().toFixed(2)}`;
     }
 
@@ -307,7 +313,6 @@ function crearAlumno() {
 
 pintarAlumnos();
 
-
 // ============================================================
 // Ejercicio 6 · Fechas y textos
 // ============================================================
@@ -315,12 +320,10 @@ pintarAlumnos();
 // TODO: diasHasta(fecha) devuelve cuántos días faltan desde hoy hasta fecha (negativo si ya pasó).
 //       Pon hoy a medianoche (hoy.setHours(0, 0, 0, 0)), resta las fechas, divide entre los milisegundos
 //       de un día y redondea con Math.round: con el cambio de hora, la resta no siempre da un número entero.
-function diasHasta(fecha) {
-
-}
+function diasHasta(fecha) {}
 
 function mostrarDias() {
-  const valor = document.querySelector("#fecha6").value;        // "2026-12-25", o "" si está vacía
+  const valor = document.querySelector("#fecha6").value; // "2026-12-25", o "" si está vacía
   const salida = document.querySelector("#salida6a");
 
   if (valor === "") {
@@ -339,15 +342,11 @@ function mostrarDias() {
 // TODO: iniciales(nombreCompleto) devuelve las iniciales en mayúsculas: «lucía martín ortega» → «LMO».
 //       Encadena trim, split(" "), filter (para quitar las palabras vacías si hay espacios dobles),
 //       map (la primera letra de cada palabra, en mayúscula) y join("").
-function iniciales(nombreCompleto) {
-
-}
+function iniciales(nombreCompleto) {}
 
 // TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
 //       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
-function crearUsuario(nombreCompleto) {
-
-}
+function crearUsuario(nombreCompleto) {}
 
 function mostrarIniciales() {
   // TODO: lee #nombre6. Si está vacío, avisa en #salida6b.
