@@ -54,7 +54,8 @@ function mostrarPrecio() {
   const baseIn = document.querySelector("#base").value.trim();
   const base = Number(baseIn);
   const iva = Number(document.querySelector("#iva").value);
-  const descuento = document.querySelector("#descuento").value;
+  const descuentoIn = document.querySelector("#descuento").value.trim();
+  const descuento = Number(descuentoIn);
   let total;
 
   if (baseIn === "" || isNaN(base) || base < 0) {
@@ -64,8 +65,12 @@ function mostrarPrecio() {
   }
   // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
   //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  else if (!descuento) {
+  else if (descuentoIn === "") {
     total = calcularPrecio(base, iva);
+  } else if (isNaN(descuento) || descuento < 0 || descuento > 100) {
+    error.textContent = "";
+    error.classList.remove("d-none");
+    error.append("El descuento tiene que estar entre 0 y 100.");
   } else {
     total = calcularPrecio(base, iva, descuento);
   }
@@ -73,7 +78,7 @@ function mostrarPrecio() {
   // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
   //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
   // Error en : condicion
-  if (total || (descuento >= 0 && descuento <= 100) || descuento) {
+  if (total !== undefined) {
     error.classList.add("d-none");
     pintarLista("#salida1", [
       `Precio sin IVA: ${formatearEuros(base)}`,
@@ -82,6 +87,7 @@ function mostrarPrecio() {
       `Precio final: ${formatearEuros(total)}`,
     ]);
   }
+  console.log("Ejercicio 1: precio final →", total);
 }
 
 // ============================================================
@@ -211,11 +217,10 @@ function verAbsolutos() {
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
 
-
 function crearContador(paso = 1) {
   let cuenta = 0;
-  
-  return function() {
+
+  return function () {
     cuenta += paso;
     return cuenta;
   };
@@ -241,52 +246,72 @@ function sumarCinco() {
 // Ejercicio 5 · Clases
 // ============================================================
 
-
 class Alumno {
   constructor(nombre, curso) {
     this.nombre = nombre;
     this.curso = curso;
     this.notas = [];
   }
-  
+
   // TODO: anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
   //       si es válida, la añade a this.notas y devuelve true.
   // TODO: media(): 0 si no hay notas; si hay, la suma con reduce (con flecha) entre el número de notas.
   // TODO: presentarse(): devuelve «Lucía Martín, de 2.º DAW».
   //       Recuerda: en una clase, los métodos van sin function y sin comas entre ellos.
-   
+
   anadirNota(nota) {
-    if (Number.isNaN(nota) || nota < 0 || nota > 10 || typeof nota!=='number') {
+    if (
+      Number.isNaN(nota) ||
+      nota < 0 ||
+      nota > 10 ||
+      typeof nota !== "number"
+    ) {
       return false;
-     }
-      this.notas.push(nota);
-      return true;
+    }
+    this.notas.push(nota);
+    return true;
   }
 
-  media(){
+  media() {
     if (this.notas.length === 0) {
       return 0;
     }
-    const suma = this.notas.reduce( (acumulador, nota) => acumulador + nota, 0);
+    const suma = this.notas.reduce((acumulador, nota) => acumulador + nota, 0);
     return suma / this.notas.length;
   }
 
   presentarse() {
     return `${this.nombre}, de ${this.curso}`;
   }
-
 }
 
 class AlumnoFCT extends Alumno {
   // TODO: constructor(nombre, curso, empresa): primero super(nombre, curso) y después guarda la empresa.
-  constructor
-  // TODO: presentarse(): la frase de Alumno (super.presentarse()) más «, en prácticas en TecnoSur».
+  constructor(nombre, curso, empresa) {
+    super(nombre, curso);
+    this.empresa = empresa;
+  }
+
+  // TODO: presentarse(): la frase de Alumno (super.presentarse()) más «, en prácticas en TecnoSur»
+  //
+  presentarse() {
+    return `${super.presentarse()}, en prácticas en ${this.empresa}`;
+  }
 }
 
 const alumnos = [];
 
 // TODO: cuando tengas las clases, crea aquí dos alumnos de partida y añádelos a alumnos con push:
 //       un Alumno con dos notas y un AlumnoFCT con otras dos.
+const alumno1 = new Alumno("Javier Barreda", "2.º DAW");
+const alumno2 = new AlumnoFCT("David Martinez", "2.º DAW", "TecnoSur");
+
+alumno1.anadirNota(7);
+alumno1.anadirNota(8.5);
+alumno2.anadirNota(6);
+alumno2.anadirNota(4.5);
+
+alumnos.push(alumno1, alumno2);
 
 // Ya está hecha: pinta una tarjeta por alumno en #listaAlumnos y actualiza #totalAlumnos
 function pintarAlumnos() {
@@ -334,10 +359,49 @@ function pintarAlumnos() {
 
 function crearAlumno() {
   // TODO: lee #nombre5, #curso5, #empresa5 y #notas5 (value y trim). Si el nombre está vacío, error en #error5.
+  const error = document.querySelector("#error5");
+  const nombre = document.querySelector("#nombre5").value.trim();
+  const curso = document.querySelector("#curso5").value.trim();
+  const empresa = document.querySelector("#empresa5").value.trim();
+  const notasIn = document.querySelector("#notas5").value.trim();
+  let alumno;
+
+  if (nombre === "") {
+    error.textContent = "";
+    error.classList.remove("d-none");
+    error.append("El nombre está vacío.");
+    return;
+  }
   // TODO: si la empresa está vacía, crea un Alumno con new; si no, un AlumnoFCT.
+  if (empresa === "") {
+    alumno = Alumno(nombre, curso);
+  } else {
+    alumno = new AlumnoFCT(nombre, curso, empresa);
+  }
   // TODO: si hay notas, sepáralas con split(",") y conviértelas con map((texto) => Number(texto.trim())).
   //       Si alguna no es válida (some), error en #error5 y no sigas. Si todas lo son, añádelas con anadirNota().
+  if (notasIn !== "") {
+    const notas = notasIn.split(",").map((texto) => Number(texto.trim()));
+
+    if (notas.some((nota) => isNaN(nota) || nota < 0 || nota > 10)) {
+      error.textContent = "";
+      error.classList.remove("d-none");
+      error.append("Alguna nota no es válida (tienen que ir de 0 a 10).");
+      return;
+    }
+
+    notas.forEach((nota) => alumno.anadirNota(nota));
+  }
   // TODO: añade el alumno a alumnos, oculta el error, vacía las casillas y llama a pintarAlumnos().
+  alumnos.push(alumno);
+  document.querySelector("#nombre5").value = "";
+  document.querySelector("#curso5").value = "";
+  document.querySelector("#empresa5").value = "";
+  document.querySelector("#notas5").value = "";
+
+  pintarAlumnos();
+
+  console.log("Ejercicio 5: nuevo alumno →", alumno);
 }
 
 pintarAlumnos();
