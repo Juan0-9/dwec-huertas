@@ -102,10 +102,6 @@ function comoTexto(pelicula) {
   return `${pelicula.titulo} (${pelicula.anio}) · ${pelicula.duracion} min`;
 }
 
-// Las cuatro funciones siguientes ya funcionan, pero sus callbacks están escritos con function, como en el tema 6.
-// TODO: pasa a flecha los cuatro callbacks (map, filter, sort y reduce). Si el cuerpo es solo una expresión,
-//       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
-
 function verTitulos() {
   const titulos = peliculas.map((pelicula) => pelicula.titulo);
   pintarLista("#salida2", titulos);
@@ -144,8 +140,9 @@ function verDuracionTotal() {
 function buscarAntigua() {
   const antigua = peliculas.find((pelicula) => pelicula.anio < 1990);
   pintarLista("#salida2", [comoTexto(antigua)]);
-    document.querySelector("#mensaje2").textContent = "Find devuelve undefined si no hay ninguna.";
-    console.log("Ejercicio 2: find →", antigua);
+  document.querySelector("#mensaje2").textContent =
+    "Find devuelve undefined si no hay ninguna.";
+  console.log("Ejercicio 2: find →", antigua);
 }
 
 // ============================================================
@@ -155,7 +152,7 @@ function buscarAntigua() {
 const numeros = [3, -1, 4, -1, 5, 9];
 document.querySelector("#numeros3").textContent =
   `const numeros = [${numeros.join(", ")}];`;
-  
+
 function transformar(lista, operacion) {
   let copia = [];
   for (let x of lista) {
@@ -201,7 +198,7 @@ function verCuadrados() {
 }
 
 function verAbsolutos() {
-  const resultado = transformar(numeros, n => Math.abs(n));
+  const resultado = transformar(numeros, (n) => Math.abs(n));
   mostrar3(
     "absoluto",
     resultado,
@@ -214,10 +211,15 @@ function verAbsolutos() {
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
 
-// TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
-//       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
-//       paso vale 1 por defecto.
-function crearContador(paso) {}
+
+function crearContador(paso = 1) {
+  let cuenta = 0;
+  
+  return function() {
+    cuenta += paso;
+    return cuenta;
+  };
+}
 
 const contarDeUno = crearContador();
 const contarDeCinco = crearContador(5);
@@ -230,12 +232,15 @@ function sumarUno() {
 }
 
 function sumarCinco() {
-  // TODO: lo mismo con contarDeCinco y #cuenta5.
+  const valor = contarDeCinco();
+  document.querySelector("#cuenta5").textContent = valor;
+  console.log("Ejercicio 4: de 5 en 5 →", valor);
 }
 
 // ============================================================
 // Ejercicio 5 · Clases
 // ============================================================
+
 
 class Alumno {
   constructor(nombre, curso) {
@@ -243,16 +248,38 @@ class Alumno {
     this.curso = curso;
     this.notas = [];
   }
-
+  
   // TODO: anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
   //       si es válida, la añade a this.notas y devuelve true.
   // TODO: media(): 0 si no hay notas; si hay, la suma con reduce (con flecha) entre el número de notas.
   // TODO: presentarse(): devuelve «Lucía Martín, de 2.º DAW».
   //       Recuerda: en una clase, los métodos van sin function y sin comas entre ellos.
+   
+  anadirNota(nota) {
+    if (Number.isNaN(nota) || nota < 0 || nota > 10 || typeof nota!=='number') {
+      return false;
+     }
+      this.notas.push(nota);
+      return true;
+  }
+
+  media(){
+    if (this.notas.length === 0) {
+      return 0;
+    }
+    const suma = this.notas.reduce( (acumulador, nota) => acumulador + nota, 0);
+    return suma / this.notas.length;
+  }
+
+  presentarse() {
+    return `${this.nombre}, de ${this.curso}`;
+  }
+
 }
 
 class AlumnoFCT extends Alumno {
   // TODO: constructor(nombre, curso, empresa): primero super(nombre, curso) y después guarda la empresa.
+  constructor
   // TODO: presentarse(): la frase de Alumno (super.presentarse()) más «, en prácticas en TecnoSur».
 }
 
