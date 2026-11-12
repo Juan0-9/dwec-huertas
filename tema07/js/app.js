@@ -430,18 +430,51 @@ function mostrarDias() {
 
   // TODO: con diasHasta(fecha), escribe en #salida6a «Faltan N días: será viernes, 25 de diciembre de 2026.»,
   //       «Es hoy…» o «Fue hace N días…». El nombre de la fecha, con toLocaleDateString("es-ES", {…}).
+
+  const fechaTexto = fecha.toLocaleDateString("es-ES", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  if (dias > 0) {
+    salida.textContent = `Faltan ${diasHasta(fecha)} días: será ${fechaTexto}.`;
+  } else if (dias === 0) {
+    salida.textContent = `Es hoy: ${fechaTexto}.`;
+  } else {
+    salida.textContent = `Fue hace ${Math.abs(diasHasta(fecha))} días: fue ${fechaTexto}.`;
+  }
+  console.log("Ejercicio 6: días →", diasHasta(fecha));
 }
 
 // TODO: iniciales(nombreCompleto) devuelve las iniciales en mayúsculas: «lucía martín ortega» → «LMO».
 //       Encadena trim, split(" "), filter (para quitar las palabras vacías si hay espacios dobles),
 //       map (la primera letra de cada palabra, en mayúscula) y join("").
-function iniciales(nombreCompleto) {}
+function iniciales(nombreCompleto) {
+  return nombreCompleto
+    .trim()
+    .split(" ")
+    .filter((palabra) => palabra === "")
+    .map((palabra) => palabra[0].toUppercase())
+    .join(" ");
+}
 
 // TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
 //       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
-function crearUsuario(nombreCompleto) {}
+function crearUsuario(nombreCompleto) {
+  const numeroRandom = Math.floor(Math.random * 1000);
+  return iniciales(nombreCompleto).toLowerCase() + String(numeroRandom).padStart(3, "0");
+}
 
 function mostrarIniciales() {
+  const nombre = document.querySelector("#nombre6");
+  const salida = document.querySelector("#salida6");
+
+
   // TODO: lee #nombre6. Si está vacío, avisa en #salida6b.
+  if (nombre === "") {
+  
+}
   // TODO: si no, escribe en #salida6b «Iniciales: LMO · usuario: lmo042».
 }
