@@ -381,7 +381,7 @@ function crearAlumno() {
   // TODO: si hay notas, sepáralas con split(",") y conviértelas con map((texto) => Number(texto.trim())).
   //       Si alguna no es válida (some), error en #error5 y no sigas. Si todas lo son, añádelas con anadirNota().
   if (notasIn !== "") {
-    const notas = notasIn.split(",").map((texto) => Number(texto.trim()));
+    const notas = notasIn.split(",").map((nota) => Number(nota.trim()));
 
     if (notas.some((nota) => isNaN(nota) || nota < 0 || nota > 10)) {
       error.textContent = "";
@@ -413,7 +413,11 @@ pintarAlumnos();
 // TODO: diasHasta(fecha) devuelve cuántos días faltan desde hoy hasta fecha (negativo si ya pasó).
 //       Pon hoy a medianoche (hoy.setHours(0, 0, 0, 0)), resta las fechas, divide entre los milisegundos
 //       de un día y redondea con Math.round: con el cambio de hora, la resta no siempre da un número entero.
-function diasHasta(fecha) {}
+function diasHasta(fecha) {
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  return Math.round((fecha - hoy) / (1000 * 60 * 60 * 24));
+}
 
 function mostrarDias() {
   const valor = document.querySelector("#fecha6").value; // "2026-12-25", o "" si está vacía
@@ -438,14 +442,15 @@ function mostrarDias() {
     year: "numeric",
   });
 
-  if (dias > 0) {
+  if (diasHasta(fecha) > 0) {
     salida.textContent = `Faltan ${diasHasta(fecha)} días: será ${fechaTexto}.`;
-  } else if (dias === 0) {
+  } else if (diasHasta(fecha) === 0) {
     salida.textContent = `Es hoy: ${fechaTexto}.`;
   } else {
     salida.textContent = `Fue hace ${Math.abs(diasHasta(fecha))} días: fue ${fechaTexto}.`;
   }
   console.log("Ejercicio 6: días →", diasHasta(fecha));
+  console.log(diasHasta(fecha));
 }
 
 // TODO: iniciales(nombreCompleto) devuelve las iniciales en mayúsculas: «lucía martín ortega» → «LMO».
@@ -455,26 +460,30 @@ function iniciales(nombreCompleto) {
   return nombreCompleto
     .trim()
     .split(" ")
-    .filter((palabra) => palabra === "")
-    .map((palabra) => palabra[0].toUppercase())
-    .join(" ");
+    .filter((palabra) => palabra !== "")
+    .map((palabra) => palabra[0].toUpperCase())
+    .join("");
 }
 
 // TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
 //       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
 function crearUsuario(nombreCompleto) {
-  const numeroRandom = Math.floor(Math.random * 1000);
-  return iniciales(nombreCompleto).toLowerCase() + String(numeroRandom).padStart(3, "0");
+  const numeroRandom = Math.floor(Math.random() * 1000);
+  return (
+    iniciales(nombreCompleto).toLowerCase() +
+    String(numeroRandom).padStart(3, "0")
+  );
 }
 
 function mostrarIniciales() {
-  const nombre = document.querySelector("#nombre6");
-  const salida = document.querySelector("#salida6");
-
+  const nombre = document.querySelector("#nombre6").value.trim();
+  const salida = document.querySelector("#salida6b");
 
   // TODO: lee #nombre6. Si está vacío, avisa en #salida6b.
   if (nombre === "") {
-  
-}
+    salida.textContent = "El nombre no puede estar vacio.";
+    return;
+  }
   // TODO: si no, escribe en #salida6b «Iniciales: LMO · usuario: lmo042».
+  salida.textContent = `Iniciales: ${iniciales(nombre)} · usuario: ${crearUsuario(nombre)}`;
 }
