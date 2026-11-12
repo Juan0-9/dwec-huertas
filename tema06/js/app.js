@@ -539,9 +539,7 @@ function buscarCiudad() {
     const estaEnArray = ciudades.includes(ciudadABuscar);
     const posicion = ciudades.indexOf(ciudadABuscar);
     contenido.textContent = `includes(): ${estaEnArray}, indexOf(): ${posicion}`;
-    console.log(
-      `Ejercicio 6 - includes(): ${estaEnArray}, indexOf(): ${posicion}`,
-    );
+    console.log("Ejercicio 6: iniciales →", iniciales(nombre), usuario);
   }
 }
 
