@@ -62,10 +62,7 @@ function mostrarPrecio() {
     error.textContent = "";
     error.classList.remove("d-none");
     error.append("Base está vacía o es negativa.");
-  }
-  // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
-  //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  else if (descuentoIn === "") {
+  } else if (descuentoIn === "") {
     total = calcularPrecio(base, iva);
   } else if (isNaN(descuento) || descuento < 0 || descuento > 100) {
     error.textContent = "";
@@ -82,7 +79,7 @@ function mostrarPrecio() {
     error.classList.add("d-none");
     pintarLista("#salida1", [
       `Precio sin IVA: ${formatearEuros(base)}`,
-      `Descuento: ${descuento}%`,
+      `Descuento: ${descuento === 0 ? 0 : descuento}%`,
       `IVA: ${iva}%`,
       `Precio final: ${formatearEuros(total)}`,
     ]);
@@ -436,7 +433,6 @@ function mostrarDias() {
     salida.textContent = `Fue hace ${Math.abs(diasHasta(fecha))} días: fue ${fechaTexto}.`;
   }
   console.log("Ejercicio 6: días →", diasHasta(fecha));
-  console.log(diasHasta(fecha));
 }
 
 function iniciales(nombreCompleto) {
@@ -466,4 +462,8 @@ function mostrarIniciales() {
   }
 
   salida.textContent = `Iniciales: ${iniciales(nombre)} · usuario: ${crearUsuario(nombre)}`;
+  console.log(
+    "Ejercicio 6: iniciales => ",
+    `Iniciales: ${iniciales(nombre)} · usuario: ${crearUsuario(nombre)}`,
+  );
 }
