@@ -2,16 +2,6 @@
   Tarea 6 · DWEC · Juan Hakram Huertas Chergui
   Objetos y arrays.
 
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · Ya tienes hechas, como modelo, comoTexto(), pintarProductos() y el ejercicio 2 casi entero:
-    léelas antes de empezar, porque el resto se hace igual.
-  · Los resultados se pintan en la página como en el tema 5: createElement, textContent, classList y append.
-    Antes de volver a pintar una lista, vacíala con textContent = "".
-  · Las funciones se escriben con function, también las que pasas a forEach, sort, map, filter o reduce.
-    Las funciones flecha las veremos en el tema 7: en esta tarea, no las uses.
-  · Cada función deja también su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
 */
 
 console.log("app.js cargado");
