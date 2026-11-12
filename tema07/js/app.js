@@ -145,9 +145,15 @@ function verDuracionTotal() {
 
 function buscarAntigua() {
   const antigua = peliculas.find((pelicula) => pelicula.anio < 1990);
-  pintarLista("#salida2", [comoTexto(antigua)]);
-  document.querySelector("#mensaje2").textContent =
-    "Find devuelve undefined si no hay ninguna.";
+   if (antigua === undefined) {
+     pintarLista("#salida2", []);
+     document.querySelector("#mensaje2").textContent =
+       "No hay ninguna película anterior a 1990.";
+   } else {
+     pintarLista("#salida2", [comoTexto(antigua)]);
+
+   }
+  
   console.log("Ejercicio 2: find →", antigua);
 }
 
@@ -374,7 +380,7 @@ function crearAlumno() {
   }
   // TODO: si la empresa está vacía, crea un Alumno con new; si no, un AlumnoFCT.
   if (empresa === "") {
-    alumno = Alumno(nombre, curso);
+    alumno = new Alumno(nombre, curso);
   } else {
     alumno = new AlumnoFCT(nombre, curso, empresa);
   }
@@ -394,6 +400,8 @@ function crearAlumno() {
   }
   // TODO: añade el alumno a alumnos, oculta el error, vacía las casillas y llama a pintarAlumnos().
   alumnos.push(alumno);
+  error.textContent = "";
+  error.classList.add("d-none")
   document.querySelector("#nombre5").value = "";
   document.querySelector("#curso5").value = "";
   document.querySelector("#empresa5").value = "";
